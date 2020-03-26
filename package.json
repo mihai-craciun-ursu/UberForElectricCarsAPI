@@ -1,0 +1,32 @@
+{
+  "name": "uberelectric",
+  "version": "1.0.0",
+  "description": "��#\u0000U\u0000b\u0000e\u0000r\u0000 \u0000F\u0000o\u0000r\u0000 \u0000E\u0000l\u0000e\u0000c\u0000t\u0000r\u0000i\u0000c\u0000 \u0000C\u0000a\u0000r\u0000s\u0000 \u0000A\u0000P\u0000I\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev:linux": "NODE_ENV=dev nodemon index.js",
+    "dev:windows": "set NODE_ENV=dev&&nodemon index.js",
+    "prod:linux": "NODE_ENV=prod nodemon index.js",
+    "prod:windows": "set NODE_ENV=prod&&nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiceDayZ/UberForElectricCarsAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NiceDayZ/UberForElectricCarsAPI/issues"
+  },
+  "homepage": "https://github.com/NiceDayZ/UberForElectricCarsAPI#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
+    "mongoose": "^5.9.6",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.2"
+  }
+}
