@@ -36,6 +36,6 @@ const routeLogSchema = new Schema(
   }
 );
 
-const routeLog = model("routeLogs", routeLogSchema);
+const RouteLog = model("routeLogs", routeLogSchema);
 
-module.exports = routeLog;
+module.exports = RouteLog;

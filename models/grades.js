@@ -20,6 +20,6 @@ const gradesSchema = new Schema(
   }
 );
 
-const grades = model("grades", gradesSchema);
+const Grades = model("grades", gradesSchema);
 
-module.exports = grades;
+module.exports = Grades;

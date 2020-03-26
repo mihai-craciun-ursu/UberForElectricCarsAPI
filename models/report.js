@@ -20,6 +20,6 @@ const reportsSchema = new Schema(
   }
 );
 
-const reports = model("reports", reportsSchema);
+const Reports = model("reports", reportsSchema);
 
-module.exports = reports;
+module.exports = Reports;

@@ -28,6 +28,6 @@ const routeRequestSchema = new Schema(
   }
 );
 
-const routeRequest = model("routeRequests", routeRequestSchema);
+const RouteRequest = model("routeRequests", routeRequestSchema);
 
-module.exports = routeRequest;
+module.exports = RouteRequest;

@@ -20,6 +20,6 @@ const providerHistorySchema = new Schema(
 }
 );
 
-const providerHistory = model("providerHistory", providerHistorySchema);
+const ProviderHistory = model("providerHistory", providerHistorySchema);
 
-module.exports = ConsumerHistory;
+module.exports = ProviderHistory;

@@ -20,6 +20,6 @@ const commentsSchema = new Schema(
   }
 );
 
-const comments = model("comments", commentsSchema);
+const Comments = model("comments", commentsSchema);
 
-module.exports = comments;
+module.exports = Comments;
