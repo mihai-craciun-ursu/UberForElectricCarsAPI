@@ -15,6 +15,8 @@ const Payment = require("./payment");
 const RouteLog = require("./routeLog");
 const RouteRequest = require("./routeRequest");
 
+const VerificationCode = require("./verificationCode");
+
 module.exports = {
     User,
     Admin,
@@ -28,5 +30,6 @@ module.exports = {
     ProviderHistory,
     Payment,
     RouteLog,
-    RouteRequest
+    RouteRequest,
+    VerificationCode
 };

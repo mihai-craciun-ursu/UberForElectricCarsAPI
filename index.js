@@ -19,7 +19,8 @@ const config = dotenv.config({
 
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex:true
 }).then(() => console.log("Succesfully connected to DB"));
 
 const db = require("./models");
@@ -28,6 +29,10 @@ app.use((req, res, next) => {
     req.db = db;
     next();
 });
+
+const router = require("./routes");
+
+app.use("/", router);
 
 app.listen(config.PORT, () => {
     console.log(`listening to port ${config.PORT}...`);
