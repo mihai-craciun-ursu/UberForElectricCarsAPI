@@ -10,6 +10,10 @@ const authTokenSchema = new Schema(
       required: true,
       type: String
     },
+    lastAccessed: {
+      type: Date,
+      default: Date.now()
+    }
   },
   {
     timestamps: true
