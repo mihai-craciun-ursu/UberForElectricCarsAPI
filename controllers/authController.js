@@ -230,7 +230,7 @@ const login = async (req, res) => {
   
       //if the code does not exist in the partial database that mean it expired
       if (!existingUser) {
-        return res.status(HttpStatusCodes.CONFLICT).json({
+        return res.status(HttpStatusCodes.UNAUTHORIZED).json({
           success: false,
           message: "The code has expired. Please try again. Keep in mind that the code is available only 10 minutes"
         })
@@ -256,6 +256,13 @@ const login = async (req, res) => {
       const token = jwt.sign({_id: user._id, passChangeState: true}, process.env.TOKEN_SECRET);
 
       res.header('Auth-Token', token);
+
+      const authToken = new AuthToken({
+        token: token,
+        email: email,
+        temp: true
+      });
+      const at = await req.db.AuthToken.create(authToken);
   
       return res.status(HttpStatusCodes.OK).json({
         success: true
@@ -275,7 +282,6 @@ const confirmRegister = async (req,res) => {
     const token = req.params.token;
     const verified = jwt.verify(token, process.env.TOKEN_SECRET_EMAIL);
 
-    console.log("ba ceva");
     await req.db.User.findOneAndUpdate({
       _id: verified._id
       }, {

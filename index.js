@@ -39,12 +39,16 @@ const router = require("./routes");
 app.use("/", router);
 
 //Scheduled JOBS
-var deleteTokes = schedule.scheduleJob('*/5 * * * *', async() => {
+var deleteTokes = schedule.scheduleJob('*/1 * * * *', async() => {
     try{
         const cursor = AuthToken.find().cursor();
         console.log("AutoSchedule job. Searching for old tokens")
         for (let authToken = await cursor.next(); authToken != null; authToken = await cursor.next()) {
             if(Date.now() - authToken.lastAccessed.getTime() > (1000 * 60 * 60 * 24)){
+                await db.AuthToken.findByIdAndDelete({ 
+                    _id: authToken._id
+                });
+            }else if(Date.now() - authToken.createdAt.getTime() > (1000 * 60 * 10) && authToken.temp){
                 await db.AuthToken.findByIdAndDelete({ 
                     _id: authToken._id
                 });

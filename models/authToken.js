@@ -13,6 +13,10 @@ const authTokenSchema = new Schema(
     lastAccessed: {
       type: Date,
       default: Date.now()
+    },
+    temp: {
+      type: Boolean,
+      default: false
     }
   },
   {

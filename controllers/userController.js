@@ -87,7 +87,7 @@ const changePassword = async (req, res) => {
             const validPass = await bcrypt.compare(oldPass, userData.password);
 
             if(!validPass) {
-                return res.status(HttpStatusCodes.NOT_FOUND).json({
+                return res.status(HttpStatusCodes.UNAUTHORIZED).json({
                 success: false,
                 message: "Old Password incorrect"
                 });

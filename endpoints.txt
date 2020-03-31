@@ -1,0 +1,133 @@
+To be noted:
+- orice endpoint poate returna pe langa mesajele specifice mesajul: "Something bad happened!" (success: false) (status: 500 Internal Server Error)
+	- in acest caz este ori o eroare de server ori datele au fost transmise eronat. Daca datele sunt corecte PM mess
+
+- atat codul de verificare cat si tokenul temporar din (/auth/forgotPassword/validate) exista pentru 10 minute
+
+- orice token are durata de viata de 24h. Isi poate da refresh daca este accesat (GET /profile) si din acel punct dureaza iar 24h.
+
+
+ENDPOINTS:
+-----------------------------------------------------
+
+- POST /auth/login
+	->data required json: {
+		"email": <String>,
+		"password": <String>
+	}
+	
+	-> raspuns: json+header
+		->raspuns json: {
+			"success" : <Boolean>
+			"message" : <String or null>
+		}
+		->raspuns header: Auth-Token: <String> //tokenul expira in 24h daca nu este accesat endpointul /profile care da refresh
+	
+	->message:
+	"Email or password incorrect" (status: 404 Not Found)
+	
+------------------------------------------------------
+	
+- POST /auth/register
+	->data required json: {
+		"lastName": <String>,
+		"firstName": <String>,
+		"phoneNumber": <String>,
+		"email": <String>,
+		"password": <String>
+	}
+	
+	->raspuns json: {
+		"success" : <Boolean>
+		"message" : <String or null>
+	}
+	
+	->message:
+	"User already exists!" (status: 409 Conflict)
+	
+------------------------------------------------------
+
+- POST /auth/forgotPassword
+	->data required json: {
+		"email": <String>
+		"method": "sms"/"email"
+	}
+	
+	->raspuns json: {
+		"success" : <Boolean>
+		"message" : <String or null>
+	}
+	
+	->message:
+	"There already exists a request for this email. Please try again in few minutes" (status: 409 Conflict)
+
+-------------------------------------------------------
+
+- POST /auth/forgotPassword/validate
+	->data required json: {
+		"email": <String>
+		"code": <String>
+	}
+	->raspuns json + header: 
+	
+		->raspuns json{
+			"success" : <Boolean>
+			"message" : <String or null>
+		}
+		->raspuns header: Auth-Token: <String> //tokenul este unul valid de logare dar expira in 10 minute fata de unul concret care expira in 24h
+	
+	->message:
+	"The code has expired. Please try again. Keep in mind that the code is available only 10 minutes" (status: 401 Unauthorized)
+	"The code is not valid. Please try again" (status: 409 Conflict)
+	
+--------------------------------------------------------
+
+- GET /profile
+	->data required header: Auth-Token: <String>
+	
+	->raspuns json{
+		success: <Boolean>
+		user: {
+			"firstName": <String>,
+			"lastName": <String>,
+			"listOfCars": <Vector<Object>>,
+			"listOfChargingStations": <Vector<Object>>
+		}
+	}
+
+---------------------------------------------------------
+	
+- POST /profile/changePassword
+	->data required json + header
+		->json{
+			"newPassword": <String>
+			"oldPassword": <String or null>
+		}
+		
+		->header: Auth-Token: <String>
+		//oldPassword poate fi null sau netrimis deloc daca Auth-Token-ul este temporar generat dupa /auth/forgotPassword/validate
+		
+	->raspuns json:{
+		success: <Boolean>
+		message: <String or null>
+	}
+	
+	->mesaj:
+	"Old Password incorrect" (status: 401 Unauthorized)
+	
+----------------------------------------------------------
+	
+- POST /profile/logout
+	->data required header: Auth-Token: <String>
+	
+	->raspuns json{
+		success: <Boolean>
+		message: <String or null>
+	}
+	
+-----------------------------------------------------------
+	
+		
+		
+	
+	
