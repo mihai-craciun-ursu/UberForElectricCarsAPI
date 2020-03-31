@@ -36,27 +36,71 @@ const changePassword = async (req, res) => {
     try {
 
         const userId = req.user._id;
+        
 
         const userData = await req.db.User.findOne({
             _id: userId
         });
+
+        
 
         if(req.user.passChangeState){
             //Hash passwords
             const salt = await bcrypt.genSalt(10);
             const hashPassword = await bcrypt.hash(req.body.newPassword, salt);
 
-            await req.db.User.findOneAndUpdate({ //deprecated To be modified
+            await req.db.User.findOneAndUpdate({ 
                 _id: userId
             }, {
                 password: hashPassword
+            });
+
+            await req.db.VerificationCode.deleteMany({ 
+                email: userData.email
+            });
+            await req.db.AuthToken.deleteMany({ 
+                email: userData.email
             });
 
             return res.status(HttpStatusCodes.OK).json({
                 success: true
             });
         }else{
-            //TODO: Check old password, renew with new password
+
+            const oldPass = req.body.oldPassword;
+            const newPass = req.body.newPassword;
+            const userId = req.user._id;
+            
+            const userData = await req.db.User.findOne({
+                _id: userId
+            });
+
+            const validPass = await bcrypt.compare(oldPass, userData.password);
+
+            if(!validPass) {
+                return res.status(HttpStatusCodes.NOT_FOUND).json({
+                success: false,
+                message: "Old Password incorrect"
+                });
+            }
+
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(newPass, salt);
+
+            await req.db.User.findOneAndUpdate({
+                _id: userId
+            }, {
+                password: hashPassword
+            });
+
+            await req.db.AuthToken.deleteMany({ 
+                email: userData.email
+            });
+
+            return res.status(HttpStatusCodes.OK).json({
+                success: true
+            });
+
         }
     }catch(err){
         console.error(err);

@@ -16,6 +16,7 @@ const RouteLog = require("./routeLog");
 const RouteRequest = require("./routeRequest");
 
 const VerificationCode = require("./verificationCode");
+const AuthToken = require("./authToken");
 
 module.exports = {
     User,
@@ -31,5 +32,6 @@ module.exports = {
     Payment,
     RouteLog,
     RouteRequest,
-    VerificationCode
+    VerificationCode,
+    AuthToken
 };

@@ -42,6 +42,10 @@ const userSchema = new Schema(
     },
     IBAN: {
         type: String
+    },
+    confirmationStatus: {
+        type: Boolean,
+        default: false
     }
 },
 {

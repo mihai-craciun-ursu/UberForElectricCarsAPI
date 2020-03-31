@@ -1,5 +1,6 @@
 const HttpStatusCodes = require("http-status-codes");
 const User = require('../models').User;
+const AuthToken = require('../models').AuthToken;
 const VerificationCode = require('../models').VerificationCode
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -34,7 +35,13 @@ const login = async (req, res) => {
       //Create and assign a token
       const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
       res.header('Auth-Token', token);
-  
+
+      const authToken = new AuthToken({
+        token: token,
+        email: email
+      });
+      const at = await req.db.AuthToken.create(authToken);
+
       return res.status(HttpStatusCodes.OK).json({
         success: true
       });
@@ -46,6 +53,8 @@ const login = async (req, res) => {
       });
     }
   };
+
+  
   
   const register = async (req, res) => {
     //Check if the user is already in the database. If not send 409 Conflict and reject request
@@ -74,11 +83,35 @@ const login = async (req, res) => {
         phoneNumber: req.body.phoneNumber
       });
   
-      const user = await req.db.User.create(createdUser)
+      const user = await req.db.User.create(createdUser);
+
+      const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET_EMAIL);
+
+      //sendConfirmationMail
+      const mailOptions = {
+        from: process.env.EMAIL, // sender address
+        to: user.email, // list of receivers //TO BE CHANGED TO user.email
+        subject: 'Uber For Electric Cars Verification Code', // Subject line
+        html: `<h3>This is your confirmation link ${process.env.API_URL}/auth/confirmRegister/${token}</h3>`// plain text body
+      };
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+               user: process.env.EMAIL,
+               pass: process.env.EMAIL_SECRET
+           }
+       });
+
+      transporter.sendMail(mailOptions, function (err, info) {
+        if(err)
+          console.log(err)
+        else
+          console.log(info);
+     });
   
       return res.status(HttpStatusCodes.CREATED).json({
-        success: true,
-        user
+        success: true
       })
     } catch (error) {
       console.error(error);
@@ -162,7 +195,7 @@ const login = async (req, res) => {
 
         const mailOptions = {
           from: process.env.EMAIL, // sender address
-          to: 'craciunmihai40@gmail.com', // list of receivers //TO BE CHANGED TO user.email
+          to: user.email, // list of receivers //TO BE CHANGED TO user.email
           subject: 'Uber For Electric Cars Verification Code', // Subject line
           html: `<h1>${text}</h1>`// plain text body
         };
@@ -235,12 +268,39 @@ const login = async (req, res) => {
       });
     }
   }
+
+  
+const confirmRegister = async (req,res) => {
+  try{
+    const token = req.params.token;
+    const verified = jwt.verify(token, process.env.TOKEN_SECRET_EMAIL);
+
+    console.log("ba ceva");
+    await req.db.User.findOneAndUpdate({
+      _id: verified._id
+      }, {
+          confirmationStatus: true
+      });
+
+      return res.status(HttpStatusCodes.OK).json({
+        success: true
+      });
+
+  }catch(err){
+    console.error(err);
+    return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Something bad happen!"
+    });
+  }
+}
   
   module.exports = {
     login,
     register,
     forgotPassword,
-    forgotPasswordValidation
+    forgotPasswordValidation,
+    confirmRegister
   };
 
   //const verificationCode = new VerificationCode({
