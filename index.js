@@ -39,7 +39,7 @@ const router = require("./routes");
 app.use("/", router);
 
 //Scheduled JOBS
-var deleteTokes = schedule.scheduleJob('*/1 * * * *', async() => {
+var deleteTokes = schedule.scheduleJob('*/5 * * * *', async() => {
     try{
         const cursor = AuthToken.find().cursor();
         console.log("AutoSchedule job. Searching for old tokens")

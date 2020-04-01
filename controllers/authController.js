@@ -155,7 +155,7 @@ const login = async (req, res) => {
         const randomNumber = Math.floor(Math.random() * 9000) + 1000;
         
 
-        const text = randomNumber.toString() + ' This is your validation code ';
+        const text = randomNumber.toString();
         console.log(text);
 
         const verificationCode = new VerificationCode({
