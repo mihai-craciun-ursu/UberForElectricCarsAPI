@@ -23,6 +23,8 @@ if(ENV === 'dev'){
     config = dotenv.config({
         path: `./configs/${ENV}.env`
     }).parsed;
+}else{
+    config = process.env.NODE_ENV;
 }
 
 mongoose.connect(config.DB_URI, {
