@@ -18,8 +18,9 @@ const ENV = process.env.NODE_ENV || 'dev';
 
 console.log(ENV);
 
-if(config === 'dev'){
-    const config = dotenv.config({
+var config;
+if(ENV === 'dev'){
+    config = dotenv.config({
         path: `./configs/${ENV}.env`
     }).parsed;
 }
