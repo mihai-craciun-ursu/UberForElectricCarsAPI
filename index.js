@@ -20,7 +20,7 @@ const config = dotenv.config({
     path: `./configs/${ENV}.env`
 }).parsed;
 
-mongoose.connect(config.DB_URI, {
+mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex:true,
