@@ -18,9 +18,11 @@ const ENV = process.env.NODE_ENV || 'dev';
 
 console.log(ENV);
 
-const config = dotenv.config({
-    path: `./configs/${ENV}.env`
-}).parsed;
+if(config === 'dev'){
+    const config = dotenv.config({
+        path: `./configs/${ENV}.env`
+    }).parsed;
+}
 
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true,
