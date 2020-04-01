@@ -60,6 +60,6 @@ var deleteTokes = schedule.scheduleJob('*/5 * * * *', async() => {
 });
 
 
-app.listen(config.PORT, () => {
-    console.log(`listening to port ${config.PORT}...`);
+app.listen(process.env.PORT, () => {
+    console.log(`listening to port ${process.env.PORT}...`);
 });
