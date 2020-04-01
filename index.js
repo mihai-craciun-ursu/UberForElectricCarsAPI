@@ -16,16 +16,9 @@ app.use(morgan("tiny"));
 
 const ENV = process.env.NODE_ENV || 'dev';
 
-console.log(ENV);
-
-var config;
-if(ENV === 'dev'){
-    config = dotenv.config({
-        path: `./configs/${ENV}.env`
-    }).parsed;
-}else{
-    config = process.env.NODE_ENV;
-}
+const config = dotenv.config({
+    path: `./configs/${ENV}.env`
+}).parsed;
 
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true,
