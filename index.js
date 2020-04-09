@@ -35,7 +35,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors({origin: '*'}));
+app.use(cors({origin: '*', allowedHeaders : "Auth-Token, Refresh-Token", methods : "GET,PUT,PATCH,POST,DELETE"}));
 
 const router = require("./routes");
 
