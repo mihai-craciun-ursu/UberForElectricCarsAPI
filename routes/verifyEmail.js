@@ -3,6 +3,7 @@ const HttpStatusCodes = require("http-status-codes");
 
 
 module.exports = async (req, res, next) => {
+  console.log(req.body);
   const email = req.body.email;
   try{
     const user = await req.db.User.findOne({

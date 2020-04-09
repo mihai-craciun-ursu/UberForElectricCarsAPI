@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models').User;
 const bcrypt = require('bcryptjs');
 const VerificationCode = require('../models').VerificationCode;
+const chargeTrip = require("./chargetrip");
 
 
 const getUser = async (req, res) => {
@@ -14,13 +15,25 @@ const getUser = async (req, res) => {
             _id: userId
         });
 
+        const carPromises = userData.listOfCars.map(async carId => {
+            const chargeTripResp = await chargeTrip.getCarById(carId);
+            return chargeTripResp;
+        }) ;
+        
+
+        const promiseVector = await Promise.all(carPromises);
+
+        let listOfCarsExpanded = [];
+        promiseVector.forEach(element => {
+            listOfCarsExpanded.push(element.car);
+        });
 
         return res.status(HttpStatusCodes.OK).json({
             success: true,
             user: {
                 firstName: userData.firstName,
                 lastName: userData.lastName,
-                listOfCars: userData.listOfCars,
+                listOfCars: listOfCarsExpanded,
                 listOfChargingStations: userData.listOfChargingStations
             }
           });
@@ -112,6 +125,36 @@ const changePassword = async (req, res) => {
     }
 }
 
+const addCar = async (req, res) => {
+    try{
+         const userId = req.user._id;
+         const carId = req.carId;
+
+        const userData = await req.db.User.findOne({
+            _id: userId
+        });
+
+        userData.listOfCars.push(carId);
+
+        await req.db.User.findOneAndUpdate({
+            _id: userId
+        }, {
+            listOfCars: userData.listOfCars
+        });
+
+        return res.status(HttpStatusCodes.OK).json({
+            success: true
+        });
+
+    }catch(err){
+        console.error(err);
+        return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: "Something bad happen!"
+        });
+    }
+}
+
 const logout = async (req, res) => {
     try {
 
@@ -120,6 +163,7 @@ const logout = async (req, res) => {
         const userData = await req.db.User.findOne({
             _id: userId
         });
+
 
         await req.db.AuthToken.deleteMany({ 
             email: userData.email
@@ -141,5 +185,6 @@ const logout = async (req, res) => {
 module.exports = {
     getUser,
     changePassword,
-    logout
+    logout,
+    addCar
 };

@@ -8,6 +8,7 @@ const Nexmo = require('nexmo');
 var nodemailer = require('nodemailer');
 
 const login = async (req, res) => {
+    console.log(req.body);
     try {
       const { email, password } = req.body;
   
@@ -173,9 +174,7 @@ const login = async (req, res) => {
           success: true
         });
 
-      }
-      
-      else if(method === 'email'){
+      }else if(method === 'email'){
         
         var transporter = nodemailer.createTransport({
           service: 'gmail',
@@ -212,6 +211,12 @@ const login = async (req, res) => {
 
         return res.status(HttpStatusCodes.OK).json({
           success: true
+        });
+      }else{
+        console.error(error);
+        return res.status(HttpStatusCodes.BAD_REQUEST).json({
+          success: false,
+          message: "Invalid method"
         });
       }
     } catch (error) {
@@ -320,7 +325,7 @@ const refreshToken = async(req, res) =>{
       email: userData.email
     });
     const at = await req.db.AuthToken.create(authToken);
-    
+
     return res.status(HttpStatusCodes.OK).json({
       success: true
     });
