@@ -36,6 +36,9 @@ const login = async (req, res) => {
       const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
       res.header('Auth-Token', token);
 
+      const refreshToken = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET_REFRESH);
+      res.header('Refresh-Token', refreshToken);
+
       const authToken = new AuthToken({
         token: token,
         email: email
@@ -300,13 +303,43 @@ const confirmRegister = async (req,res) => {
     });
   }
 }
+
+const refreshToken = async(req, res) =>{
+  try{
+    const userId = req.user._id;
+
+    const userData = await req.db.User.findOne({
+      _id: userId
+    });
+
+    const token = jwt.sign({_id: userId}, process.env.TOKEN_SECRET);
+    res.header('Auth-Token', token);
+
+    const authToken = new AuthToken({
+      token: token,
+      email: userData.email
+    });
+    const at = await req.db.AuthToken.create(authToken);
+    
+    return res.status(HttpStatusCodes.OK).json({
+      success: true
+    });
+  }catch(err){
+    console.error(err);
+    return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Something bad happen!"
+    });
+  }
+}
   
   module.exports = {
     login,
     register,
     forgotPassword,
     forgotPasswordValidation,
-    confirmRegister
+    confirmRegister,
+    refreshToken
   };
 
   //const verificationCode = new VerificationCode({

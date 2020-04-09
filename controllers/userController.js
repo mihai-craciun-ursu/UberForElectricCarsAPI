@@ -10,18 +10,10 @@ const getUser = async (req, res) => {
 
         const userId = req.user._id;
 
-        console.log(userId);
-
         const userData = await req.db.User.findOne({
             _id: userId
         });
 
-        //update with nothing to modify updateDate so token will remain valid
-        await req.db.AuthToken.updateMany({ 
-            email: userData.email
-        }, {
-            lastAccessed: Date.now()
-        });
 
         return res.status(HttpStatusCodes.OK).json({
             success: true,
