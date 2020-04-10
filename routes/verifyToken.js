@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
         req.user = verified;
         next();
     }catch (err){
-        return res.status(HttpStatusCodes.UNAUTHORIZED).json({
+        return res.status(HttpStatusCodes.FORBIDDEN).json({
             success: false,
             message: "Invalid token"
           });

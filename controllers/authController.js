@@ -250,7 +250,7 @@ const login = async (req, res) => {
           email
         }).remove().exec();
 
-        return res.status(HttpStatusCodes.CONFLICT).json({
+        return res.status(HttpStatusCodes.NOT_FOUND).json({
           success: false,
           message: "The code is not valid. Please try again"
         })
