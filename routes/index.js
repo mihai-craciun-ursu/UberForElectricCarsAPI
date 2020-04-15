@@ -10,7 +10,7 @@ router.use("/auth", auth);
 router.use("/profile", user);
 router.use("/cars", cars);
 router.use("/ocpi/cpo/2.2/locations", stations);
-router.use("/stations", chargingStations);
+router.use("/station", chargingStations);
 
 
 
