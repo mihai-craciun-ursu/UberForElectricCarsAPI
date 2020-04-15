@@ -312,13 +312,9 @@ const getNearbyListOfChargingStations = async(latitude, longitude, distance, ame
       formattedAddress
     }
     amenities
-    properties
-    realtime
     openingHours
     open24h
     timezone
-    lastUsedDate
-    power
     speed
     status
     review {
