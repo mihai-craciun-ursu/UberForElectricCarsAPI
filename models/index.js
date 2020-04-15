@@ -18,6 +18,9 @@ const RouteRequest = require("./routeRequest");
 const VerificationCode = require("./verificationCode");
 const AuthToken = require("./authToken");
 
+const Location = require("./Location");
+const GeoLocation = require("./GeoLocation");
+
 module.exports = {
     User,
     Admin,
@@ -33,5 +36,7 @@ module.exports = {
     RouteLog,
     RouteRequest,
     VerificationCode,
-    AuthToken
+    AuthToken,
+    Location,
+    GeoLocation
 };

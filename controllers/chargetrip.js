@@ -153,7 +153,191 @@ const getCarById = async(id) => {
     }
 }
 
+const getListOfChargingStations = async() => {
+  const query = `{stationList {
+    id
+    externalId
+    name
+    location {
+      type
+      coordinates
+    }
+    elevation
+    evses {
+      externalId
+      evseId
+      physicalReference
+      connectors {
+        externalId
+        ocpiId
+        power
+        amps
+        voltage
+        type
+        status
+        properties
+      }
+      parkingRestriction
+      properties
+      paymentMethod
+      price {
+        value
+        currency
+        model
+        displayValue
+      }
+    }
+    chargers {
+      type
+      power
+      price
+      speed
+      status {
+        free
+        busy
+        unknown
+        error
+      }
+      total
+    }
+    operator {
+      name
+    }
+    owner {
+      name
+    }
+    address {
+      continent
+      country
+      county
+      city
+      street
+      number
+      postalCode
+      what3Words
+      formattedAddress
+    }
+    amenities
+    properties
+    realtime
+    openingHours
+    open24h
+    timezone
+    lastUsedDate
+    power
+    speed
+    status
+    review {
+      rating
+      count
+    }
+  }}`
+
+  try{
+      const data = await client.request(query);
+      return data;
+  }catch(err){
+      return err;
+  }
+}
+
+const getNearbyListOfChargingStations = async(latitude, longitude, distance, amenities) => {
+  const query = `{stationAround(
+    query: {
+      location: { type: Point, coordinates: [${latitude}, ${longitude}] }
+      distance: ${distance}
+      ${amenities ? "amenities:" + amenities : ""}
+    }
+  ) {
+    id
+    externalId
+    name
+    location {
+      type
+      coordinates
+    }
+    elevation
+    evses {
+      externalId
+      evseId
+      physicalReference
+      connectors {
+        externalId
+        ocpiId
+        power
+        amps
+        voltage
+        type
+        status
+        properties
+      }
+      parkingRestriction
+      properties
+      paymentMethod
+      price {
+        value
+        currency
+        model
+        displayValue
+      }
+    }
+    chargers {
+      type
+      power
+      price
+      speed
+      status {
+        free
+        busy
+        unknown
+        error
+      }
+      total
+    }
+    operator {
+      name
+    }
+    owner {
+      name
+    }
+    address {
+      continent
+      country
+      county
+      city
+      street
+      number
+      postalCode
+      what3Words
+      formattedAddress
+    }
+    amenities
+    properties
+    realtime
+    openingHours
+    open24h
+    timezone
+    lastUsedDate
+    power
+    speed
+    status
+    review {
+      rating
+      count
+    }
+}}`
+
+  try{
+      const data = await client.request(query);
+      return data;
+  }catch(err){
+      return err;
+  }
+}
+
 module.exports = {
     getListOfCars,
-    getCarById
+    getCarById,
+    getListOfChargingStations,
+    getNearbyListOfChargingStations
 }
