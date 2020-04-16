@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
 
 const EVSE  = mongoose.model(
-  "EVSE ",
+  "EVSE",
   new mongoose.Schema({
-    uid: {
-        required : true,
-        type: String//CiString(36)
-    },
     evse_id: {
         type: String//CiString(48)
     },
@@ -87,4 +83,4 @@ const EVSE  = mongoose.model(
 }
 ));
 
-module.exports =EVSE ;
+module.exports = EVSE ;

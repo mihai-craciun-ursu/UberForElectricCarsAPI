@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const GeoLocation  = mongoose.model(
-  "GeoLocation ",
+  "GeoLocation",
   new mongoose.Schema({
     latitude: {
         required : true,

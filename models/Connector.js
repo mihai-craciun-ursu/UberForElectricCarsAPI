@@ -1,21 +1,23 @@
 const mongoose = require("mongoose");
 
 const Connector  = mongoose.model(
-  "Connector ",
+  "Connector",
   new mongoose.Schema({
-    id: {
-        required : true,
-        type: String//CiString(36)
-    },
     standard: {
         required : true,
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ConnectorType"
+        type: String,
+        enum: ['CHADEMO', 'DOMESTIC_A', 'DOMESTIC_B', 'DOMESTIC_C', 'DOMESTIC_D', 'DOMESTIC_E', 'DOMESTIC_F', 'DOMESTIC_G',
+        'DOMESTIC_H', 'DOMESTIC_I', 'DOMESTIC_J', 'DOMESTIC_K', 'DOMESTIC_L', 'IEC_60309_2_single_16', 'IEC_60309_2_three_16', 
+       'IEC_60309_2_three_32', 'IEC_60309_2_three_64', 'IEC_62196_T1', 'IEC_62196_T1_COMBO',  'IEC_62196_T2',  'IEC_62196_T2_COMBO', 
+        'IEC_62196_T3A',  'IEC_62196_T3C', 'PANTOGRAPH_BOTTOM_UP', 'PANTOGRAPH_TOP_DOWN', 'TESLA_R', 'TESLA_S']
     },
     format: {
         required : true,
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ConnectorFormat"
+        type: String,
+        enum: [// ~PowerType~ enum
+            'SOCKET',
+            'CABLE',
+        ]
     },
     power_type : {
         required : true,
@@ -39,11 +41,9 @@ const Connector  = mongoose.model(
         type: Number
     },
     tariff_ids: {
-	required: true,
         type:Array //Array <CiString(36)>
     },
     terms_and_conditions: {
-	required: true,
         type:String // URL:URL to the operator’s terms and conditions.
     },
     last_updated: {
@@ -56,4 +56,4 @@ const Connector  = mongoose.model(
 }
 ));
 
-module.exports =Connector ;
+module.exports = Connector;

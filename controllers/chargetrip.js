@@ -244,7 +244,7 @@ const getListOfChargingStations = async() => {
 const getNearbyListOfChargingStations = async(latitude, longitude, distance, amenities) => {
   const query = `{stationAround(
     query: {
-      location: { type: Point, coordinates: [${latitude}, ${longitude}] }
+      location: { type: Point, coordinates: [${longitude}, ${latitude}] }
       distance: ${distance}
       ${amenities ? "amenities:" + amenities : ""}
     }

@@ -20,6 +20,8 @@ const AuthToken = require("./authToken");
 
 const Location = require("./Location");
 const GeoLocation = require("./GeoLocation");
+const EVSE = require("./EVSE");
+const Connector = require("./Connector");
 
 module.exports = {
     User,
@@ -38,5 +40,7 @@ module.exports = {
     VerificationCode,
     AuthToken,
     Location,
-    GeoLocation
+    GeoLocation,
+    EVSE,
+    Connector
 };
