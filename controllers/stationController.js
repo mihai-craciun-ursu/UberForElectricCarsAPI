@@ -15,43 +15,22 @@ async function asyncForEach(array, callback) {
 const getListOfAllStations = async (req, res) => {
     try{
 
+        console.log(new Date('2019-01-28T12:00:00'));
         var dbcount = await req.db.Location.find().countDocuments();
 
         offset = req.query.offset || 0;
         limit = req.query.limit || dbcount;
 
-        var docs = await req.db.Location.find().skip(Number(offset)).limit(Number(limit));
+        var docs = await req.db.Location.find(
+            {}
+        ).skip(Number(offset)).limit(Number(limit)).populate({path: 'evses', populate:'connectors'}).populate('coordinates');
         
-        var count = 0;
 
         var locationList = [];
-        for (const doc of docs) {
-            
-            count ++;
-            
-            var listOfEvses = [];
-
-            doc.evses.forEach(evse => {
-                listOfEvses.push(req.db.EVSE.findById(evse));
-            });
-            
-            doc.evses = await Promise.all(listOfEvses);
-
-            for(const evse of doc.evses){
-                var listOfConnectors = [];
-                evse.connectors.forEach(connector => {
-                    listOfConnectors.push(req.db.Connector.findById(connector));
-                })
-
-                doc.evses[doc.evses.indexOf(evse)].connectors = await Promise.all(listOfConnectors);
-                
-            }
-            
-            doc.coordinates = await req.db.GeoLocation.findById(doc.coordinates);
-
-
+        
+        
+        docs.forEach(doc => {
             var locationObj = doc.toObject();
-
             locationObj.evses.forEach(evse => {
                 locationObj.evses[locationObj.evses.indexOf(evse)].uid = evse._id;
                 locationObj.evses[locationObj.evses.indexOf(evse)].connectors.forEach(connector => {
@@ -60,19 +39,19 @@ const getListOfAllStations = async (req, res) => {
             });
             locationObj.id = locationObj._id;
             locationList.push(locationObj);
-          }
-
-        console.log(count + "(" + dbcount + ")");
+        })
+        
 
         if(offset && limit){
-            if(offset + limit < dbcount){
-                res.header('Link', `https://uber-electric.herokuapp.com/ocpi/cpo/2.2/locations?offset=${offset+limit}&limit=${limit}`);
+            if(Number(offset)+Number(limit) < dbcount){
+                res.header('Link', `https://uber-electric.herokuapp.com/ocpi/cpo/2.2/locations?offset=${Number(offset)+Number(limit)}&limit=${limit}`);
             }
         }
         
-        res.header('Link', `https://uber-electric.herokuapp.com/ocpi/cpo/2.2/locations?offset=${offset+limit}&limit=${limit}`);
         res.header('X-Total-Count', dbcount);
         res.header('X-Limit', dbcount);
+
+ 
 
         return res.status(HttpStatusCodes.OK).json({
             Location: locationList
@@ -143,9 +122,6 @@ module.exports = {
 
 //   let rawdata = fs.readFileSync(__dirname + '\\charging.json');
 //   let location = JSON.parse(rawdata);
-
-
-
 //   asyncForEach(location, async(element) => {
 //       if(element.AddressInfo.AddressLine1 && element.AddressInfo.Town){
 
@@ -233,7 +209,7 @@ module.exports = {
 //                       max_voltage: connection.Voltage || 300,
 //                       max_amperage: connection.Amps || 32,
 //                       max_electric_power: connection.PowerKW,
-//                       last_updated: element.DateLastStatusUpdate.substring(0, element.DateLastStatusUpdate.length - 1)
+//                       last_updated: new Date().toISOString()
 //                   })
 
 //                   listOfConnectorsPromises.push(req.db.Connector.create(littleConnector));
@@ -254,7 +230,7 @@ module.exports = {
 //           var littleEVSE = new EVSE({
 //               status: 'AVAILABLE',
 //               connectors: listOfConnectors,
-//               last_updated: "2015-06-29T20:39:09"
+//               last_updated: new Date().toISOString()
 //           })
 
 //           listOfEVSE.push(await req.db.EVSE.create(littleEVSE));
@@ -270,7 +246,7 @@ module.exports = {
 //               coordinates: await req.db.GeoLocation.create(geoLocation),
 //               evses: listOfEVSE,
 //               time_zone: '+02:00',
-//               last_updated: "2015-06-29T20:39:09"
+//               last_updated: new Date().toISOString()
 //           });
 
 //           const createdLocation = await req.db.Location.create(createLocation);
