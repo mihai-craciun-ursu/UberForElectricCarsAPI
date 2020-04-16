@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const Location = mongoose.model(
     "Location",
     new  mongoose.Schema({
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+	    ref: "User"
+    },
     country_code: {
         required : true,
         type: String //CiString(2)  only printable ASCII 
