@@ -15,15 +15,15 @@ async function asyncForEach(array, callback) {
 const getListOfAllStations = async (req, res) => {
     try{
 
-        console.log(new Date('2019-01-28T12:00:00'));
+        /////////////////////////////////
+
+        //console.log(new Date('2019-01-28T12:00:00'));
         var dbcount = await req.db.Location.find().countDocuments();
 
         offset = req.query.offset || 0;
         limit = req.query.limit || dbcount;
 
-        var docs = await req.db.Location.find(
-            {}
-        ).skip(Number(offset)).limit(Number(limit)).populate({path: 'evses', populate:'connectors'}).populate('coordinates');
+        var docs = await req.db.Location.find().skip(Number(offset)).limit(Number(limit)).populate({path: 'evses', populate:'connectors'}).populate('coordinates');
         
 
         var locationList = [];
@@ -39,7 +39,7 @@ const getListOfAllStations = async (req, res) => {
             });
             locationObj.id = locationObj._id;
             locationList.push(locationObj);
-        })
+        });
         
 
         if(offset && limit){
@@ -51,10 +51,13 @@ const getListOfAllStations = async (req, res) => {
         res.header('X-Total-Count', dbcount);
         res.header('X-Limit', dbcount);
 
- 
+        const timestampNow = new Date();
 
         return res.status(HttpStatusCodes.OK).json({
-            Location: locationList
+            data: locationList,
+            status_code: 1000,
+            status_message: 'ok',
+            timestamp: timestampNow
         });
 
     }catch(err){
@@ -119,6 +122,8 @@ module.exports = {
     getEVSEById,
     getConnectorById
   };
+
+
 
 //   let rawdata = fs.readFileSync(__dirname + '\\charging.json');
 //   let location = JSON.parse(rawdata);
@@ -208,7 +213,7 @@ module.exports = {
 //                       power_type: currentType,
 //                       max_voltage: connection.Voltage || 300,
 //                       max_amperage: connection.Amps || 32,
-//                       max_electric_power: connection.PowerKW,
+//                       max_electric_power: connection.PowerKW * 1000,
 //                       last_updated: new Date().toISOString()
 //                   })
 
@@ -245,7 +250,7 @@ module.exports = {
 //               country: element.AddressInfo.Country.ISOCode,
 //               coordinates: await req.db.GeoLocation.create(geoLocation),
 //               evses: listOfEVSE,
-//               time_zone: '+02:00',
+//               time_zone: "europe/bucharest",
 //               last_updated: new Date().toISOString()
 //           });
 
