@@ -8,6 +8,8 @@ const getListOfAllChargingStations = async (req, res) => {
         
           const data = await chargetrip.getListOfChargingStations();
 
+          //console.log(data);
+
           let locationPromisesArray = [];
           data.stationList.forEach(location => {
             locationPromisesArray.push(req.db.Location.findOne({
