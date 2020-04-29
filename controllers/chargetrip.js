@@ -234,7 +234,7 @@ const getNearbyListOfChargingStations = async(latitude, longitude, distance, ame
     query: {
       location: { type: Point, coordinates: [${longitude}, ${latitude}] }
       distance: ${distance}
-      amenities: [${amenitiesString}]
+      ${amenities == null ? '' : 'amenities: [' + amenitiesString + ']'}
     }
   ) {
     id
