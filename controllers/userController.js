@@ -157,6 +157,33 @@ const addCar = async (req, res) => {
     }
 }
 
+const addStation = async (req, res) => {
+    try{
+
+        
+
+        req.body.connectors.forEach(element => {
+            
+        });
+
+        var geoLocation = new GeoLocation({
+            latitude: req.body.geolocation.latitude, //String
+            longitude: req.body.geolocation.longitude, //String
+        });
+
+
+
+        return res.status(HttpStatusCodes.OK).json({
+            success: true
+        });
+    }catch{
+        return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: "Something bad happen!"
+        });
+    }
+}
+
 const logout = async (req, res) => {
     try {
 
