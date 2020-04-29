@@ -208,13 +208,22 @@ const getListOfChargingStations = async() => {
 }
 
 const getNearbyListOfChargingStations = async(latitude, longitude, distance, amenities) => {
+  let amenitiesString = '';
+  if(amenities){
+    amenities.forEach(ameniti => {
+      amenitiesString = amenitiesString + '"' + ameniti + '",'
+    });
+    amenitiesString = amenitiesString.substr(0, amenitiesString.length - 1);
+  }else{
+    amenitiesString = null;
+  }
   const query = `{stationAround(
     size: 100,
     page: 0,
     query: {
       location: { type: Point, coordinates: [${longitude}, ${latitude}] }
       distance: ${distance}
-      ${amenities ? "amenities:" + amenities : ""}
+      amenities: [${amenitiesString}]
     }
   ) {
     id

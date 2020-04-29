@@ -63,13 +63,15 @@ const getNearbyChargingStations = async (req, res) => {
       const latitude = Number(req.query.latitude);
       const longitude = Number(req.query.longitude);
       const distance = Number(req.query.distance) || 5000;
-      const amenities = req.body.amenities;
+      const amenities = req.query.amenities;
 
       let amenitiesArray = amenities ? amenities.split(',') : null;
 
+      console.log(amenitiesArray);
+
       const data = await chargetrip.getNearbyListOfChargingStations(latitude, longitude, distance, amenitiesArray);
 
-      console.log(data.stationAround.length);
+      console.log(data);
 
           let locationPromisesArray = [];
           data.stationAround.forEach(location => {
