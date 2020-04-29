@@ -6,9 +6,7 @@ const Location = require("../models").Location;
 const getListOfAllChargingStations = async (req, res) => {
     try{
         
-          const data = await chargetrip.getListOfChargingStations()
-          
-          console.log(data.stationList.length);
+          const data = await chargetrip.getListOfChargingStations();
 
           let locationPromisesArray = [];
           data.stationList.forEach(location => {
@@ -28,9 +26,13 @@ const getListOfAllChargingStations = async (req, res) => {
                 email: location.user.email,
                 phoneNumber: location.user.phoneNumber
               };
+            }else{
+              data.stationList[index].user = null;
             }
             if(location.price_per_kw){
               data.stationList[index].price_per_kw = location.price_per_kw;
+            }else{
+              data.stationList[index].price_per_kw = null;
             }
           });
             
@@ -67,11 +69,7 @@ const getNearbyChargingStations = async (req, res) => {
 
       let amenitiesArray = amenities ? amenities.split(',') : null;
 
-      console.log(amenitiesArray);
-
       const data = await chargetrip.getNearbyListOfChargingStations(latitude, longitude, distance, amenitiesArray);
-
-      console.log(data);
 
           let locationPromisesArray = [];
           data.stationAround.forEach(location => {
@@ -91,9 +89,13 @@ const getNearbyChargingStations = async (req, res) => {
                 email: location.user.email,
                 phoneNumber: location.user.phoneNumber
               };
+            }else{
+              data.stationAround[index].user = null;
             }
             if(location.price_per_kw){
               data.stationAround[index].price_per_kw = location.price_per_kw;
+            }else{
+              data.stationAround[index].price_per_kw = null;
             }
           });
             

@@ -166,7 +166,6 @@ const getListOfChargingStations = async() => {
     evses {
       uid
       status
-      capabilities
       connectors {
         id
         standard
@@ -235,7 +234,6 @@ const getNearbyListOfChargingStations = async(latitude, longitude, distance, ame
     evses {
       uid
       status
-      capabilities
       connectors {
         id
         standard
