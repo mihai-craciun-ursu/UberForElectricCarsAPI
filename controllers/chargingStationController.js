@@ -66,7 +66,12 @@ const getNearbyChargingStations = async (req, res) => {
       
       const latitude = Number(req.query.latitude);
       const longitude = Number(req.query.longitude);
-      const distance = Number(req.query.distance) || 5000;
+
+      let distance = 5000;
+      if(req.query.distance){
+        distance = Number(req.query.distance);
+      }
+      
       const amenities = req.query.amenities;
 
       let amenitiesArray = amenities ? amenities.split(',') : null;
