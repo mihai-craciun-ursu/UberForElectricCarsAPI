@@ -5,7 +5,10 @@ const Location = mongoose.model(
     new  mongoose.Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
-	    ref: "User"
+	    ref: "users"
+    },
+    price_per_kw:{
+        type: Number
     },
     country_code: {
         required : true,

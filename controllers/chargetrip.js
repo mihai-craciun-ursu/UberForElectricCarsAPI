@@ -1,7 +1,7 @@
 const { request, GraphQLClient } = require('graphql-request');
 const HttpStatusCodes = require("http-status-codes");
 
-const client = new GraphQLClient('https://api.chargetrip.io/graphql', {
+const client = new GraphQLClient('https://staging-api.chargetrip.io/graphql', {
     headers: {
       "x-client-id": `${process.env.TOKEN_AUTH_CHARGETRIP}`,
     },
@@ -18,6 +18,7 @@ const getListOfCars = async(make) => {
               make
               carModel
               edition
+              seats
               imagesData {
                   image {
                       id
@@ -57,6 +58,7 @@ const getListOfCars = async(make) => {
                 make
                 carModel
                 edition
+                seats
                 imagesData {
                   image {
                     id
@@ -154,43 +156,31 @@ const getCarById = async(id) => {
 }
 
 const getListOfChargingStations = async() => {
-  const query = `{stationList {
+  const query = `{stationList(size: 100, page: 0) {
     id
-    externalId
-    name
-    location {
-      type
-      coordinates
+    external_id
+    coordinates {
+      latitude
+      longitude
     }
-    elevation
     evses {
-      externalId
-      evseId
-      physicalReference
+      uid
+      status
+      capabilities
       connectors {
-        externalId
-        ocpiId
+        id
+        standard
+        format
+        power_type
+        max_voltage
+        max_amperage
+        max_electric_power
         power
-        amps
-        voltage
-        type
-        status
-        properties
-      }
-      parkingRestriction
-      properties
-      paymentMethod
-      price {
-        value
-        currency
-        model
-        displayValue
       }
     }
     chargers {
-      type
+      standard
       power
-      price
       speed
       status {
         free
@@ -200,37 +190,13 @@ const getListOfChargingStations = async() => {
       }
       total
     }
-    operator {
-      name
-    }
-    owner {
-      name
-    }
-    address {
-      continent
-      country
-      county
+    physical_address {
       city
       street
       number
-      postalCode
-      what3Words
-      formattedAddress
     }
     amenities
-    properties
-    realtime
-    openingHours
-    open24h
-    timezone
-    lastUsedDate
-    power
     speed
-    status
-    review {
-      rating
-      count
-    }
   }}`
 
   try{
@@ -243,6 +209,8 @@ const getListOfChargingStations = async() => {
 
 const getNearbyListOfChargingStations = async(latitude, longitude, distance, amenities) => {
   const query = `{stationAround(
+    size: 100,
+    page: 0,
     query: {
       location: { type: Point, coordinates: [${longitude}, ${latitude}] }
       distance: ${distance}
@@ -250,41 +218,29 @@ const getNearbyListOfChargingStations = async(latitude, longitude, distance, ame
     }
   ) {
     id
-    externalId
-    name
-    location {
-      type
-      coordinates
+    external_id
+    coordinates {
+      latitude
+      longitude
     }
-    elevation
     evses {
-      externalId
-      evseId
-      physicalReference
+      uid
+      status
+      capabilities
       connectors {
-        externalId
-        ocpiId
+        id
+        standard
+        format
+        power_type
+        max_voltage
+        max_amperage
+        max_electric_power
         power
-        amps
-        voltage
-        type
-        status
-        properties
-      }
-      parkingRestriction
-      properties
-      paymentMethod
-      price {
-        value
-        currency
-        model
-        displayValue
       }
     }
     chargers {
-      type
+      standard
       power
-      price
       speed
       status {
         free
@@ -294,34 +250,14 @@ const getNearbyListOfChargingStations = async(latitude, longitude, distance, ame
       }
       total
     }
-    operator {
-      name
-    }
-    owner {
-      name
-    }
-    address {
-      continent
-      country
-      county
+    physical_address {
       city
       street
       number
-      postalCode
-      what3Words
-      formattedAddress
     }
     amenities
-    openingHours
-    open24h
-    timezone
     speed
-    status
-    review {
-      rating
-      count
-    }
-}}`
+  }}`
 
   try{
       const data = await client.request(query);
