@@ -13,12 +13,18 @@ const getListOfCars = async(make) => {
 
         if(make){
           query = `{
-            carList(query: { make: "${make}" }) {
+            carList(size: 100, page: 0, query: { make: "${make}" }) {
               id
               make
               carModel
               edition
+              power
+              acceleration
+              topSpeed
+              torque
               seats
+              weight
+              width
               imagesData {
                   image {
                       id
@@ -53,12 +59,18 @@ const getListOfCars = async(make) => {
           }`
         }else{
           query = `{
-              carList {
+              carList(size: 100, page: 0) {
                 id
                 make
                 carModel
                 edition
+                power
+                acceleration
+                topSpeed
+                torque
                 seats
+                weight
+                width
                 imagesData {
                   image {
                     id

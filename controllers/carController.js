@@ -7,7 +7,6 @@ const getListOfAllCars = async (req, res) => {
         
           const data = await chargetrip.getListOfCars(req.query.make);
           
-            
           return res.status(HttpStatusCodes.OK).json({
             success: true,
             data: data
@@ -25,10 +24,11 @@ const getListOfAllCars = async (req, res) => {
 
 const getCarById = async (req, res) => {
     try{
-      console.log(req.params.id);
       
 
       const data = await chargetrip.getCarById(req.params.id);
+
+      
             
       return res.status(HttpStatusCodes.OK).json({
         success: true,
