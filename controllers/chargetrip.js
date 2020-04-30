@@ -300,7 +300,7 @@ const newRoute = async(data) => {
   });
   adaptersString = adaptersString.substr(0, adaptersString.length-1);
 
-  const query = `{newRoute(
+  const query = `mutation {newRoute(
     input: {
       ev: {
         id: "${data.carID}"
@@ -331,14 +331,14 @@ const newRoute = async(data) => {
 
   try{
     const data = await client.request(query);
-    return data;
+    return await getRoute(data.newRoute);
   }catch(err){
       return err;
   }
 }
 
 const getRoute = async(routeId) => {
-  const query = `route(id: "${routeId}") {
+  const query = `{route(id: "${routeId}") {
     route {
       id
       charges
@@ -417,10 +417,14 @@ const getRoute = async(routeId) => {
       }
     }
     status
-  }`;
+  }}`;
 
   try{
-    const data = await client.request(query);
+    let data = null;
+    do{
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      data = await client.request(query);
+    }while(data.route.status == "processing")
     return data;
   }catch(err){
     return err;
