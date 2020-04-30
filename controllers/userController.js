@@ -1,9 +1,15 @@
 const HttpStatusCodes = require("http-status-codes");
 const jwt = require('jsonwebtoken');
-const User = require('../models').User;
 const bcrypt = require('bcryptjs');
-const VerificationCode = require('../models').VerificationCode;
+
 const chargeTrip = require("./chargetrip");
+
+const VerificationCode = require('../models').VerificationCode;
+const User = require('../models').User;
+const Location = require("../models").Location;
+const GeoLocation = require("../models").GeoLocation;
+const EVSE = require("../models").EVSE;
+const Connector = require("../models").Connector;
 
 
 const getUser = async (req, res) => {
@@ -160,18 +166,76 @@ const addCar = async (req, res) => {
 const addStation = async (req, res) => {
     try{
 
+        const userId = req.user._id;
+        const userData = await req.db.User.findOne({
+            _id: userId
+        });
         
 
-        req.body.connectors.forEach(element => {
-            
+        var arrayOfConnectorsPromises = [];
+        var arrayOfConnectors = [];
+        req.body.connectors.forEach(connector => { //array
+
+            let connectorObj = new Connector({
+                standard: connector.standard, //string(ENUM)
+                format: connector.format, //string(ENUM)
+                power_type: connector.power_type, //string(ENUM)
+                max_voltage: connector.max_voltage, //integer
+                max_amperage: connector.max_amperage, //integer
+                max_electric_power: connector.max_electric_power, //integer
+                last_updated: new Date().toISOString()
+            });
+
+            arrayOfConnectorsPromises.push(req.db.Connector.create(connectorObj));
         });
 
-        var geoLocation = new GeoLocation({
+        arrayOfConnectors = await Promise.all(arrayOfConnectorsPromises);
+
+        let evseObj = new EVSE({
+            connectors: arrayOfConnectors,
+            status: req.body.status, //string(ENUM)
+            last_updated: new Date().toISOString()
+        });
+
+        let evse = await req.db.EVSE.create(evseObj);
+
+        var geoLocationObj = new GeoLocation({
             latitude: req.body.geolocation.latitude, //String
             longitude: req.body.geolocation.longitude, //String
         });
 
+        let geoLocation = await req.db.GeoLocation.create(geoLocationObj);
 
+        let arrayOfEvses = [];
+        arrayOfEvses.push(evse);
+
+        let locationObj = new Location({
+            evses: arrayOfEvses,
+            charging_when_closed: true,
+            country_code: "RO",
+            party_id: "AAA",
+            publish: false,
+            address: req.body.address, //String
+            city: req.body.city, //string
+            country: "RO",
+            coordinates: geoLocation,
+            time_zone: "europe/bucharest",
+            last_updated: new Date().toISOString(),
+            user: userData,
+            price_per_kw: req.body.price //Float
+        });
+
+
+        let location = await req.db.Location.create(locationObj);
+        
+
+        userData.listOfChargingStations.push(location._id);
+
+        await req.db.User.findOneAndUpdate({
+            _id: userData._id
+        }, {
+            listOfChargingStations: userData.listOfChargingStations
+        });
 
         return res.status(HttpStatusCodes.OK).json({
             success: true
@@ -215,5 +279,6 @@ module.exports = {
     getUser,
     changePassword,
     logout,
-    addCar
+    addCar,
+    addStation
 };
