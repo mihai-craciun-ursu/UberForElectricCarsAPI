@@ -47,7 +47,7 @@ var deleteTokes = schedule.scheduleJob('*/5 * * * *', async() => {
         const cursor = AuthToken.find().cursor();
         console.log("AutoSchedule job. Searching for old tokens")
         for (let authToken = await cursor.next(); authToken != null; authToken = await cursor.next()) {
-            if(Date.now() - authToken.lastAccessed.getTime() > (1000 * 60 * 60 * 3)){
+            if(Date.now() - authToken.createdAt.getTime() > (1000 * 60 * 60 * 3)){
                 await db.AuthToken.findByIdAndDelete({ 
                     _id: authToken._id
                 });
