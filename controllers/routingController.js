@@ -29,8 +29,9 @@ const getNewRoute = async (req, res) => {
                 consumption: data.route.route.consumption,
                 rangeStartKwh: data.route.route.rangeStartKwh,
                 rangeEndKwh: data.route.route.rangeEndKwh,
+                legs: legsArray,
                 polyline: data.route.route.polyline,
-                legs: legsArray
+                
             }
             return res.status(HttpStatusCodes.OK).json({
                 success: true,
@@ -39,7 +40,7 @@ const getNewRoute = async (req, res) => {
         }else{
             return res.status(HttpStatusCodes.OK).json({
                 success: true,
-                data: data
+                route: data.route
             });
         }
     }catch(err){
