@@ -305,8 +305,8 @@ const newRoute = async(data) => {
       ev: {
         id: "${data.carID}"
         battery: {
-          capacity: { value: ${data.capacity.kilometers}, type: km }
-          stateOfCharge: { value: ${data.capacity.kilowats}, type: kwh }
+          capacity: { value: ${data.max_kilometers}, type: km }
+          stateOfCharge: { value: ${data.kilowats_now}, type: kwh }
           finalStateOfCharge: { value: 0, type: kwh }
         }
         plugs: [${plugsString}]
