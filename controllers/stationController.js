@@ -47,9 +47,6 @@ const getListOfAllStations = async (req, res) => {
                 res.header('Link', `https://uber-electric.herokuapp.com/ocpi/cpo/2.2/locations?offset=${Number(offset)+Number(limit)}&limit=${limit}`);
             }
         }
-        
-        res.header('X-Total-Count', dbcount);
-        res.header('X-Limit', dbcount);
 
         const timestampNow = new Date();
 

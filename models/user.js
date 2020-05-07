@@ -28,19 +28,10 @@ const userSchema = new Schema(
     listOfChargingStations: {
         type: Array
     },
-    cardNumber: {
+    paypalEmail: {
         type: String
     },
-    CVV: {
-        type: Number
-    },
-    cardOwnerName: {
-        type: String
-    },
-    cardExpirationDate: {
-        type: Date
-    },
-    IBAN: {
+    address: {
         type: String
     },
     confirmationStatus: {

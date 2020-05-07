@@ -1,26 +1,32 @@
 const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
 const paymentSchema = new Schema({
     providerID : {
-        required: true,
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+	    ref: "users"
     },
     consumerID : {
-        required : true,
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+	    ref: "users"
     },
     pricePerKwCharged : {
         required : true,
+        type: Number
+    },
+    kwCharged : {
+        required: true,
         type: Number
     },
     totalPrice: {
         required: true,
         type: Number
     },
-    payingMethod: {
+    status: {
         required: true,
-        type: String
-    },
+        type: String,
+        default: 'pending'
+    }
 },
 {
     timestamps: true

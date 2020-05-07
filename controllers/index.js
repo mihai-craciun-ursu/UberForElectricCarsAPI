@@ -4,6 +4,7 @@ const carController = require("./carController");
 const stationController = require("./stationController");
 const chargingStationController = require("./chargingStationController");
 const routingController = require("./routingController");
+const paymentController = require("./paymentController");
 
 const chargetrip = require("./chargetrip");
 
@@ -14,5 +15,6 @@ module.exports = {
     stationController,
     chargingStationController,
     routingController,
+    paymentController,
     chargetrip
 }
