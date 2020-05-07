@@ -7,8 +7,8 @@ const Payment = require('../models').Payment;
 
 paypal.configure({
     'mode': 'sandbox',
-    'client_id': 'AWyjA0lbUyAgAzLkQkuk0OFjqKVkAt87kI6d_hZzE9YivLXEQWAAKwFA395HZyo912mGOSy1_a6XTM1q',
-    'client_secret': 'ELft0o4YQmuwPoO6Hs1i39lBcla9RBe7vbhc8bET_9SVSiAAMq6M_m2pnStRKVHMF2s5vNkuMynDjfvo'
+    'client_id': `${process.env.PAYPAL_USER_ID}`,
+    'client_secret': `${process.env.PAYPAL_USER_SECRET}`
 });
 
 
