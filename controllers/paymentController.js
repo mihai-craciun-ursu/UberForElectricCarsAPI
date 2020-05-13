@@ -34,7 +34,7 @@ const getPaymentIntend = async (req, res) => {
             _id: locationData.user._id
         });
 
-        const price = (Number(locationData.price_per_kw)*kwH) / 4.2;
+        const price = (Number(locationData.price_per_kw)*kwH) / 4.4;
 
         const createdPayment = new Payment({
             providerID: payeeData,
@@ -233,7 +233,7 @@ const getCancelledPayment = async (req, res) => {
 }
 
 const getAllPaymentsToUser = async (req, res) => {
-    
+    const last = req.query.last;
     try{
         const userId = req.user._id;
 
@@ -264,6 +264,12 @@ const getAllPaymentsToUser = async (req, res) => {
             paymentsToBeReturned.push(paymentObject)
         });
 
+        if(last == 'true'){
+            paymentsToBeReturned.sort((a, b)=>{
+                return (a.createdDate < b.createdDate) ? 1 : ((a.createdDate > b.createdDate) ? -1 : 0);
+            });
+            paymentsToBeReturned = paymentsToBeReturned.slice(0, 1);
+        }
 
         return res.status(HttpStatusCodes.OK).json({
                     success: true,
@@ -280,6 +286,8 @@ const getAllPaymentsToUser = async (req, res) => {
 }
 
 const getAllPaymentsFromAUser= async (req, res) => {
+    const last = req.query.last;
+
     try{
         const userId = req.user._id;
 
@@ -309,6 +317,13 @@ const getAllPaymentsFromAUser= async (req, res) => {
 
             paymentsToBeReturned.push(paymentObject)
         });
+
+        if(last == 'true'){
+            paymentsToBeReturned.sort((a, b)=>{
+                return (a.createdDate < b.createdDate) ? 1 : ((a.createdDate > b.createdDate) ? -1 : 0);
+            });
+            paymentsToBeReturned = paymentsToBeReturned.slice(0, 1);
+        }
 
 
         return res.status(HttpStatusCodes.OK).json({
