@@ -1,15 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const adminSchema = new Schema({
-    workEmail : {
-        required : true,
-        type: String
-    },
-    workPhone : {
-        required: true,
-        type: String
-    },
-    userName: {
+    email : {
         required : true,
         type: String
     },

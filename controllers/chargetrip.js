@@ -214,6 +214,7 @@ const getListOfChargingStations = async() => {
       const data = await client.request(query);
       return data;
   }catch(err){
+      console.log(err);
       return err;
   }
 }

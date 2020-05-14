@@ -7,6 +7,7 @@ const chargeTrip = require("./chargetrip");
 const VerificationCode = require('../models').VerificationCode;
 const User = require('../models').User;
 const Location = require("../models").Location;
+const TempLocation = require("../models").TempLocation;
 const GeoLocation = require("../models").GeoLocation;
 const EVSE = require("../models").EVSE;
 const Connector = require("../models").Connector;
@@ -209,7 +210,7 @@ const addStation = async (req, res) => {
         let arrayOfEvses = [];
         arrayOfEvses.push(evse);
 
-        let locationObj = new Location({
+        let locationObj = new TempLocation({
             evses: arrayOfEvses,
             charging_when_closed: true,
             country_code: "RO",
@@ -222,31 +223,136 @@ const addStation = async (req, res) => {
             time_zone: "europe/bucharest",
             last_updated: new Date().toISOString(),
             user: userData,
+            status: "pending",
             price_per_kw: req.body.price //Float
         });
 
-
-        let location = await req.db.Location.create(locationObj);
         
 
-        userData.listOfChargingStations.push(location._id);
+        let location = await req.db.TempLocation.create(locationObj);
+        
 
-        await req.db.User.findOneAndUpdate({
-            _id: userData._id
-        }, {
-            listOfChargingStations: userData.listOfChargingStations
-        });
+        // userData.listOfChargingStations.push(location._id);
+
+        // await req.db.User.findOneAndUpdate({
+        //     _id: userData._id
+        // }, {
+        //     listOfChargingStations: userData.listOfChargingStations
+        // });
 
         return res.status(HttpStatusCodes.OK).json({
             success: true
         });
-    }catch{
+    }catch(err){
+        console.log(err);
         return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
             success: false,
             message: "Something bad happen!"
         });
     }
 }
+
+const changeDetails = async(req, res) => {
+    try{
+
+        const userId = req.user._id;
+        const userData = await req.db.User.findOne({
+            _id: userId
+        });
+
+        const lastName = req.body.lastName || userData.lastName;
+        const firstName = req.body.firstName || userData.firstName;
+        const phoneNumber = req.body.phoneNumber || userData.phoneNumber;
+        const address = req.body.address || userData.address || null;
+
+        const newUser = await req.db.User.findOneAndUpdate({
+            _id: userData._id
+        },
+        {
+            lastName: lastName,
+            firstName: firstName,
+            phoneNumber: phoneNumber,
+            address: address
+        }
+        )
+
+        //console.log(newUser);
+
+        res.status(HttpStatusCodes.OK).json({
+            success: true,
+        });
+
+    }catch(err){
+        console.log(err);
+        return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: "Something bad happen!"
+        });
+    }
+}
+
+const removeCar = async (req, res) => {
+    try{
+        const userId = req.user._id;
+        const userData = await req.db.User.findOne({
+            _id: userId
+        });
+
+        let newListOfCars = userData.listOfCars;
+
+        newListOfCars = newListOfCars.filter(e => e !== req.body.carId);
+
+        const newUser = await req.db.User.findOneAndUpdate({
+            _id: userData._id
+        },
+        {
+            listOfCars: newListOfCars,
+        });
+
+        res.status(HttpStatusCodes.OK).json({
+            success: true,
+        });
+
+    }catch(err){
+        console.log(err);
+        return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: "Something bad happen!"
+        });
+    }
+}
+
+const removeStation = async (req, res) => {
+    try{
+        const userId = req.user._id;
+        const userData = await req.db.User.findOne({
+            _id: userId
+        });
+
+        let newListOfChargingStations = userData.listOfChargingStations;
+
+        newListOfChargingStations = newListOfChargingStations.filter(e => e !== req.body.stationId);
+
+        const newUser = await req.db.User.findOneAndUpdate({
+            _id: userData._id
+        },
+        {
+            listOfChargingStations: newListOfChargingStations,
+        });
+
+        res.status(HttpStatusCodes.OK).json({
+            success: true,
+        });
+
+    }catch(err){
+        console.log(err);
+        return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: "Something bad happen!"
+        });
+    }
+}
+
 
 const logout = async (req, res) => {
     try {
@@ -280,5 +386,8 @@ module.exports = {
     changePassword,
     logout,
     addCar,
-    addStation
+    addStation,
+    changeDetails,
+    removeCar,
+    removeStation
 };

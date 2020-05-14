@@ -19,6 +19,7 @@ const VerificationCode = require("./verificationCode");
 const AuthToken = require("./authToken");
 
 const Location = require("./Location");
+const TempLocation = require("./TempLocation");
 const GeoLocation = require("./GeoLocation");
 const EVSE = require("./EVSE");
 const Connector = require("./Connector");
@@ -40,6 +41,7 @@ module.exports = {
     VerificationCode,
     AuthToken,
     Location,
+    TempLocation,
     GeoLocation,
     EVSE,
     Connector
