@@ -22,6 +22,9 @@ const paymentSchema = new Schema({
         required: true,
         type: Number
     },
+    redirectLink: {
+        type: String
+    },
     status: {
         required: true,
         type: String,

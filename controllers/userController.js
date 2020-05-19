@@ -173,6 +173,38 @@ const addStation = async (req, res) => {
         const userData = await req.db.User.findOne({
             _id: userId
         });
+
+
+
+        const password = req.body.password;
+        const validPass = await bcrypt.compare(password, userData.password);
+
+        if(!validPass) {
+            return res.status(HttpStatusCodes.FORBIDDEN).json({
+            success: false,
+            message: "Password incorrect"
+            });
+        }
+
+
+        if(!userData.paypalEmail){
+            return res.status(HttpStatusCodes.FORBIDDEN).json({
+                success: false,
+                message: "Paypal account is not set yet. Please set your paypal account first in the profile section."
+            });
+        }
+
+        const stationNumber = userData.listOfChargingStations.length;
+
+        console.log(stationNumber);
+
+        if(stationNumber >= 2){
+            return res.status(HttpStatusCodes.NOT_ACCEPTABLE).json({
+                success: false,
+                message: "You cannot add more than 2 charging stations. Keep it personal not comerical."
+            });
+        }
+
         
 
         var arrayOfConnectorsPromises = [];
@@ -212,7 +244,7 @@ const addStation = async (req, res) => {
         let arrayOfEvses = [];
         arrayOfEvses.push(evse);
 
-        let locationObj = new TempLocation({
+        let locationObj = new TempLocation({ //to be changed with Location
             evses: arrayOfEvses,
             charging_when_closed: true,
             country_code: "RO",
@@ -225,7 +257,7 @@ const addStation = async (req, res) => {
             time_zone: "europe/bucharest",
             last_updated: new Date().toISOString(),
             user: userData,
-            status: "pending",
+            status: "pending", //to be deleted when added to permanent
             price_per_kw: req.body.price //Float
         });
 
@@ -234,13 +266,13 @@ const addStation = async (req, res) => {
         let location = await req.db.TempLocation.create(locationObj);
         
 
-        // userData.listOfChargingStations.push(location._id);
+        userData.listOfChargingStations.push(location._id);
 
-        // await req.db.User.findOneAndUpdate({
-        //     _id: userData._id
-        // }, {
-        //     listOfChargingStations: userData.listOfChargingStations
-        // });
+        await req.db.User.findOneAndUpdate({
+            _id: userData._id
+        }, {
+            listOfChargingStations: userData.listOfChargingStations
+        });
 
         return res.status(HttpStatusCodes.OK).json({
             success: true
@@ -266,6 +298,7 @@ const changeDetails = async(req, res) => {
         const firstName = req.body.firstName || userData.firstName;
         const phoneNumber = req.body.phoneNumber || userData.phoneNumber;
         const address = req.body.address || userData.address || null;
+        const paypalEmail = req.body.paypalEmail || userData.paypalEmail || null;
 
         const newUser = await req.db.User.findOneAndUpdate({
             _id: userData._id
@@ -274,7 +307,8 @@ const changeDetails = async(req, res) => {
             lastName: lastName,
             firstName: firstName,
             phoneNumber: phoneNumber,
-            address: address
+            address: address,
+            paypalEmail: paypalEmail
         }
         )
 

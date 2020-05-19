@@ -35,17 +35,6 @@ const getPaymentIntend = async (req, res) => {
         });
 
         const price = (Number(locationData.price_per_kw)*kwH) / 4.4;
-
-        const createdPayment = new Payment({
-            providerID: payeeData,
-            consumerID: payerData,
-            pricePerKwCharged: Number(locationData.price_per_kw),
-            totalPrice: (Number(locationData.price_per_kw)*kwH),
-            kwCharged: kwH,
-            status: "pending"
-          });
-      
-          const paymentObj = await req.db.Payment.create(createdPayment);
     
     
 
@@ -79,7 +68,16 @@ const getPaymentIntend = async (req, res) => {
         }]
     };
 
-    
+    const createdPayment = new Payment({
+        providerID: payeeData,
+        consumerID: payerData,
+        pricePerKwCharged: Number(locationData.price_per_kw),
+        totalPrice: (Number(locationData.price_per_kw)*kwH),
+        kwCharged: kwH,
+        status: "pending"
+      });
+  
+      const paymentObj = await req.db.Payment.create(createdPayment);
 
     paypal.payment.create(create_payment_json, function(error, payment){
         if(error){
@@ -96,6 +94,8 @@ const getPaymentIntend = async (req, res) => {
                     redirectLink = link.href;
                 }
             });
+
+            
 
             return res.status(HttpStatusCodes.OK).json({
                 success: true,
@@ -188,7 +188,8 @@ const getSuccessPayment = async (req, res) => {
                         req.db.Payment.findOneAndUpdate({
                             _id: paymentObj
                         }, {
-                            status: "complete"
+                            status: "complete",
+                            redirectLink: null
                         }, function(err, result) {
                             if (err) {
                               console.log(err)
@@ -215,7 +216,8 @@ const getCancelledPayment = async (req, res) => {
     req.db.Payment.findOneAndUpdate({
         _id: paymentObj
     }, {
-        status: "cancelled"
+        status: "cancelled",
+        redirectLink: null
     }, function(err, result) {
         if (err) {
           console.log(err)
