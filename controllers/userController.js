@@ -42,6 +42,8 @@ const getUser = async (req, res) => {
                 lastName: userData.lastName,
                 email: userData.email,
                 phoneNumber: userData.phoneNumber,
+                paypalEmail: userData.paypalEmail || null,
+                address: userData.address || null,
                 listOfCars: listOfCarsExpanded,
                 listOfChargingStations: userData.listOfChargingStations
             }
