@@ -207,72 +207,72 @@ const addStation = async (req, res) => {
 
         
 
-        var arrayOfConnectorsPromises = [];
-        var arrayOfConnectors = [];
-        req.body.connectors.forEach(connector => { //array
+        // var arrayOfConnectorsPromises = [];
+        // var arrayOfConnectors = [];
+        // req.body.connectors.forEach(connector => { //array
 
-            let connectorObj = new Connector({
-                standard: connector.standard, //string(ENUM)
-                format: connector.format, //string(ENUM)
-                power_type: connector.power_type, //string(ENUM)
-                max_voltage: connector.max_voltage, //integer
-                max_amperage: connector.max_amperage, //integer
-                max_electric_power: connector.max_electric_power, //integer
-                last_updated: new Date().toISOString()
-            });
+        //     let connectorObj = new Connector({
+        //         standard: connector.standard, //string(ENUM)
+        //         format: connector.format, //string(ENUM)
+        //         power_type: connector.power_type, //string(ENUM)
+        //         max_voltage: connector.max_voltage, //integer
+        //         max_amperage: connector.max_amperage, //integer
+        //         max_electric_power: connector.max_electric_power, //integer
+        //         last_updated: new Date().toISOString()
+        //     });
 
-            arrayOfConnectorsPromises.push(req.db.Connector.create(connectorObj));
-        });
+        //     arrayOfConnectorsPromises.push(req.db.Connector.create(connectorObj));
+        // });
 
-        arrayOfConnectors = await Promise.all(arrayOfConnectorsPromises);
+        // arrayOfConnectors = await Promise.all(arrayOfConnectorsPromises);
 
-        let evseObj = new EVSE({
-            connectors: arrayOfConnectors,
-            status: req.body.status, //string(ENUM)
-            last_updated: new Date().toISOString()
-        });
+        // let evseObj = new EVSE({
+        //     connectors: arrayOfConnectors,
+        //     status: req.body.status, //string(ENUM)
+        //     last_updated: new Date().toISOString()
+        // });
 
-        let evse = await req.db.EVSE.create(evseObj);
+        // let evse = await req.db.EVSE.create(evseObj);
 
-        var geoLocationObj = new GeoLocation({
-            latitude: req.body.geolocation.latitude, //String
-            longitude: req.body.geolocation.longitude, //String
-        });
+        // var geoLocationObj = new GeoLocation({
+        //     latitude: req.body.geolocation.latitude, //String
+        //     longitude: req.body.geolocation.longitude, //String
+        // });
 
-        let geoLocation = await req.db.GeoLocation.create(geoLocationObj);
+        // let geoLocation = await req.db.GeoLocation.create(geoLocationObj);
 
-        let arrayOfEvses = [];
-        arrayOfEvses.push(evse);
+        // let arrayOfEvses = [];
+        // arrayOfEvses.push(evse);
 
-        let locationObj = new TempLocation({ //to be changed with Location
-            evses: arrayOfEvses,
-            charging_when_closed: true,
-            country_code: "RO",
-            party_id: "AAA",
-            publish: false,
-            address: req.body.address, //String
-            city: req.body.city, //string
-            country: "RO",
-            coordinates: geoLocation,
-            time_zone: "europe/bucharest",
-            last_updated: new Date().toISOString(),
-            user: userData,
-            status: "pending", //to be deleted when added to permanent
-            price_per_kw: req.body.price //Float
-        });
+        // let locationObj = new TempLocation({ //to be changed with Location
+        //     evses: arrayOfEvses,
+        //     charging_when_closed: true,
+        //     country_code: "RO",
+        //     party_id: "AAA",
+        //     publish: false,
+        //     address: req.body.address, //String
+        //     city: req.body.city, //string
+        //     country: "RO",
+        //     coordinates: geoLocation,
+        //     time_zone: "europe/bucharest",
+        //     last_updated: new Date().toISOString(),
+        //     user: userData,
+        //     status: "pending", //to be deleted when added to permanent
+        //     price_per_kw: req.body.price //Float
+        // });
 
         
 
-        let location = await req.db.TempLocation.create(locationObj);
+        // let location = await req.db.TempLocation.create(locationObj);
         
 
-        userData.listOfChargingStations.push(location._id);
+        // userData.listOfChargingStations.push(location._id);
 
-        await req.db.User.findOneAndUpdate({
-            _id: userData._id
-        }, {
-            listOfChargingStations: userData.listOfChargingStations
-        });
+        // await req.db.User.findOneAndUpdate({
+        //     _id: userData._id
+        // }, {
+        //     listOfChargingStations: userData.listOfChargingStations
+        // });
 
         return res.status(HttpStatusCodes.OK).json({
             success: true
