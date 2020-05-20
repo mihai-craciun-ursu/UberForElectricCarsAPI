@@ -37,7 +37,16 @@ const getPaymentIntend = async (req, res) => {
         const price = (Number(locationData.price_per_kw)*kwH) / 4.4;
     
     
-
+        const createdPayment = new Payment({
+            providerID: payeeData,
+            consumerID: payerData,
+            pricePerKwCharged: Number(locationData.price_per_kw),
+            totalPrice: (Number(locationData.price_per_kw)*kwH),
+            kwCharged: kwH,
+            status: "pending"
+          });
+      
+          const paymentObj = await req.db.Payment.create(createdPayment);
         
 
     const create_payment_json = {
@@ -68,16 +77,7 @@ const getPaymentIntend = async (req, res) => {
         }]
     };
 
-    const createdPayment = new Payment({
-        providerID: payeeData,
-        consumerID: payerData,
-        pricePerKwCharged: Number(locationData.price_per_kw),
-        totalPrice: (Number(locationData.price_per_kw)*kwH),
-        kwCharged: kwH,
-        status: "pending"
-      });
-  
-      const paymentObj = await req.db.Payment.create(createdPayment);
+
 
     paypal.payment.create(create_payment_json, function(error, payment){
         if(error){
@@ -107,7 +107,7 @@ const getPaymentIntend = async (req, res) => {
     })
 
 }catch(err){
-    console.log(error);
+    console.log(err);
     return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: "Something bad happen!"
