@@ -30,7 +30,7 @@ mongoose.connect(process.env.DB_URI, {
 
 const db = require("./models");
 
-app.use(cors({origin: '*', allowedHeaders : ['Auth-Token','Refresh-Token, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'], exposedHeaders : ['Auth-Token','Refresh-Token, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'], methods : "GET,PUT,PATCH,POST,DELETE,OPTIONS"}));
+app.use(cors({credentials: true, origin: true, allowedHeaders : ['Auth-Token','Refresh-Token, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'], exposedHeaders : ['Auth-Token','Refresh-Token, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'], methods : "GET,PUT,PATCH,POST,DELETE,OPTIONS"}));
 
 app.use((req, res, next) => {
     req.db = db;
