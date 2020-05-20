@@ -336,7 +336,7 @@ const removeCar = async (req, res) => {
 
         let newListOfCars = userData.listOfCars;
 
-        newListOfCars = newListOfCars.filter(e => e !== req.body.carId);
+        newListOfCars = newListOfCars.filter(e => e != req.body.carId);
 
         const newUser = await req.db.User.findOneAndUpdate({
             _id: userData._id
@@ -359,15 +359,21 @@ const removeCar = async (req, res) => {
 }
 
 const removeStation = async (req, res) => {
+    
     try{
         const userId = req.user._id;
         const userData = await req.db.User.findOne({
             _id: userId
         });
 
+        //console.log("cevaaaaaa");
         let newListOfChargingStations = userData.listOfChargingStations;
 
-        newListOfChargingStations = newListOfChargingStations.filter(e => e !== req.body.stationId);
+        console.log(newListOfChargingStations);
+
+        newListOfChargingStations = newListOfChargingStations.filter(e => e != req.body.stationId);
+
+        console.log(newListOfChargingStations);
 
         const newUser = await req.db.User.findOneAndUpdate({
             _id: userData._id
