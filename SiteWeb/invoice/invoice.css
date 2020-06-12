@@ -1,0 +1,272 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1B3550;
+}
+
+.header_options {
+    display: none;
+    width: 100%;
+    height: 50px;
+    background-color: #14283C;
+}
+
+.header_icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 10px;
+    margin-left: 32px;
+}
+
+#header_settings {
+    float: right;
+    margin-right: 52px;
+}
+
+.content_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.option_profile_wrapper {
+    width: 420px;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background: #14283C;
+}
+
+.option_column {
+    width: 60px;
+    height: 100vh;
+    background: #14283C;
+    text-align: center;
+}
+
+.profile_column {
+    background-color: #1B3550;
+    width: 100%;
+    height: 100vh;
+    border-radius: 25px 0 0 25px;
+}
+
+.option_icon {
+    position: relative;
+    top: 60px;
+    padding-top: 30px;
+    display: block;
+    margin: auto;
+    width: 26px;
+    height: 26px;
+}
+
+#settings {
+    position: relative;
+    top: 40vh;
+}
+
+#profile_picture {
+    width: 110px;
+    height: 110px;
+    border-radius: 100%;
+    margin: auto;
+    display: block;
+    position: relative;
+    top: 30px;
+}
+
+#profile_name {
+    color: white;
+    font-weight: 200;
+    text-align: center;
+}
+
+#user_rating {
+    color: white;
+    text-align: right;
+    position: relative;
+    top: 25px;
+    margin-right: 32px;
+    cursor: pointer;
+}
+
+#user_main_data {
+    background-color: #1B3550;
+    margin: auto;
+    width: 90%;
+    height: 130px;
+    position: relative;
+    top: 40px;
+    border-radius: 25px;
+    text-align: center;
+    -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+    box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+}
+
+#car_owner_icon, #location_icon, #email_icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+}
+
+#car_owner_p, #location_p, #email_p {
+    position: relative;
+    top: 5px;
+    color: white;
+    font-weight: bold;
+}
+.invoice-column {
+    width: 100%;
+    height: 100vh;
+    background:  #F5F8F8;
+    border-radius: 25px 0 0 25px;
+    overflow-y: auto;
+}
+#info{
+   
+    width: 90%;
+    padding:0px;
+    border-radius: 20px 0px 0px 20px;
+
+}
+div#info .nume{
+    display: inline;
+    position: relative;
+    font-size: 60px;
+    top: 35px;
+    margin-left: 35px;
+    font-family: "Candara", Gadget, sans-serif;
+    text-emphasis: weight;
+    color: #14283C;
+}
+
+div#info p:nth-of-type(2){
+    font-weight: bold;
+    margin-left: 10.34px ;
+}
+div#info .explications{
+    margin : 5% 30% 0 3%;
+    font-size: 1.1em;
+    font-family: "Candara", Gadget, sans-serif;
+}
+
+
+.transaction table{
+    background-color: #F5F8F8;
+    margin : 3% 5%;
+    width: 70%;
+    font-size: 1.3em;
+    font-family: "Candara", Gadget, sans-serif;
+    color: #14283C;
+ }
+ tr:hover ,.row:focus{
+     background-color: #6666ff;
+    }
+tr.selected-row-invoice:hover, .row:focus{
+    background-color: #6666ff;
+}
+
+tr.selected-row-invoice{
+    background-color: #7777fc;
+}
+.transaction tr,td{
+    border-collapse: collapse;
+    border-bottom: 1px solid gray;
+    text-align: center;
+    
+}
+#view_more_row, #view_less_row {
+    background: none;
+}
+
+#view_less_row {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+.search{
+    float : right;
+    margin-right: 5%;
+}
+.search img{
+    width: 16px;
+}
+.search button{
+    position: relative;
+    top : 3px;
+    height: 23px;
+}
+
+.bill button{
+    position: relative;
+    margin-left: 10%;
+    margin-top : 25%;
+    padding: 3% 5% 20% 5%;
+    background-color: #2856B8;
+    color: white;
+    font-size: 2em;
+    border-radius: 15px;
+    font-family: "Candara", Gadget, sans-serif;
+    background-image: url("./Group\ 70.png") ;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+@media screen and (max-width: 1200px) {
+    .option_column {
+        display: none;
+    }
+
+    .content_wrapper {
+        width: 100%;
+    }
+
+    .profile_column {
+        width: 100%;
+        margin: auto;
+        border-radius: 0;
+    }
+
+    #user_main_data {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: 250px;
+    }
+
+    .header_options {
+        display: block;
+    }
+
+    .header_options img {
+        margin-left: 16px;
+    }
+    .invoice-column{
+        height: 100%;
+    }
+    .transaction table{
+        width: 70%;
+        height: 100%;
+    }
+
+    #car_owner_icon, #location_icon, #email_icon {
+        position: relative;
+        top: 5px;
+        font-size: 15px;
+    }
+    
+    #car_owner_p, #location_p, #email_p {
+        position: relative;
+        top: 45px;
+        font-size: 15px;
+    }
+}

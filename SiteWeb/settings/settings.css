@@ -1,0 +1,414 @@
+#settingsPage {
+    height: 100%;
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    flex:1;  
+}
+
+div#profile-from-settings {
+    display: table-cell;
+    background-color: #1B3550;
+    width: 23%;
+    padding: 0px;
+    border-radius: 20px;
+    text-align: center;
+}
+div#profile-from-settings p {
+    font-family: 'Tajawal', sans-serif;
+    color: #F5F8F8;
+    font-size: 30px;
+    font-weight: 900;
+    margin-block-start: 0em;
+}
+
+div#profile-from-settings #info-box {
+    width: 85%;
+   min-height: 100px;
+    -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+    box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+    margin: auto;
+    border-radius: 20px;
+    background-color: #1B3550;
+    overflow: hidden;
+}
+
+div#profile-from-settings #info-box figure {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0px;
+    justify-content: start;
+    margin-inline-start: 20px;
+    margin-inline-end: 10px;
+}
+
+div#profile-from-settings #info-box figure:nth-of-type(1) {
+    padding-top: 6px;
+}
+
+div#profile-from-settings #info-box figure figcaption {
+    display: inline;
+    font-size: 14px;
+    margin-left: 10px;
+    color: #F5F8F8;
+}
+
+#ratingtext {
+    margin-left: 52%;
+    display: inline;
+    font-size: 14px !important;
+}
+
+#ratingstar {
+    display: inline;
+}
+
+#avatar {
+    display: block;
+    margin: auto;
+}
+
+#principal{
+    vertical-align: top;
+    display: table-cell;
+    background-color: #F5F8F8;
+    border-radius: 20px 0px 0px 20px;   
+    padding: 0px !important;
+    padding-block-start: 0px;
+    overflow-y: auto;
+    flex:1;
+   
+}
+
+#principal #page-links{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 50px;
+    max-width:74vw;
+    padding: 20px;
+    
+}
+
+#principal #page-links .page-name{
+    margin:20px;
+    height: 40px;
+    min-width:max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F8F8;
+
+    border-radius: 20px;
+    -webkit-box-shadow: 3px 7px 7px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 3px 7px 7px 5px  rgba(0, 0, 0, 0.15);
+    box-shadow:3px 7px 7px 5px  rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+      
+}
+#principal #page-links .page-name#account-button{
+   background-color: #2856b8;
+}
+
+.page-name a{
+    padding-right: 40px;
+    padding-left: 40px;
+    text-decoration: none; 
+    color: #2856b8;   
+}
+
+#principal #page-links .page-name#account-button a{
+    color: white;
+}
+
+#principal .account-settings{
+    min-height: 40vh;
+    max-width:74vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin : 0px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.account-settings .formular-account{
+    flex:40%;
+    background-color: #F5F8F8;
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 0px;
+}
+
+form label{
+    font-size: 20px;
+    color: black;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+}
+
+form input{
+    color: black;
+    background-color:  #F5F8F8;
+    width: 60%;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow:0px 3px 3px 3px  rgba(0, 0, 0, 0.18);
+    margin-bottom: 10px;
+    margin-top:6px;
+}
+
+form input[type="button"]{
+    color:  #F5F8F8;
+    background-color: #2856b8;
+    width: fit-content;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 35px;
+    box-shadow:0px 2px 2px 2px  #b5c8f1;;
+}
+
+form input[type="submit"]{
+    color:  #F5F8F8;
+    background-color: #2856b8;
+    width: fit-content;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 35px;
+    box-shadow:0px 2px 2px 2px  #b5c8f1;;
+}
+
+
+form .butoane{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    
+    justify-content: space-around;  
+    flex-wrap: wrap;
+    padding-top: 15px;
+}
+
+.formular-account h2{
+    margin-top:0px;
+    color: black;
+    font-size: 30px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 900;
+}
+
+.account-settings .panou{
+    flex:40%;
+    height:350px;
+    background-color: #F5F8F8;
+    padding: 20px;
+    margin: 20px;  
+}
+
+.account-settings .panou .poza{
+    width: 65%;
+    height: inherit;
+    border-radius: 10px;
+    margin-left: 10px;
+   
+}
+
+.account-settings .panou .poza.history{
+    background-image:url("history.png") ;
+    background-color: #2856b8;
+    background-position: bottom ; 
+    background-repeat: no-repeat; 
+
+}
+
+.account-settings .panou .poza.statistics{
+    background-image:url("statistics.png") ;
+    background-color: #2856b8;
+    background-position: bottom ; 
+    background-repeat: no-repeat; 
+
+}
+
+.account-settings .panou .poza h2{
+    margin: 0px;
+    padding: 20px;
+    padding-top: 10px;
+    color:  #F5F8F8;
+}
+
+.account-settings .panou .poza h2:first-child{
+    padding-top: 40px;
+    padding-bottom: 0px;
+}
+
+.account-settings .panou .poza a{
+    width: fit-content;
+    padding: 10px 20px 10px 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: #F5F8F8;
+    color:  #2856b8;
+    font-size: 13px;
+}
+
+.account-settings .panou .poza.statistics h2{
+    padding-bottom: 45px;
+}
+select {
+    color: #F5F8F8;
+    background-color: #2856b8;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    position: relative;
+}
+
+/*@media only screen and (max-width: 600px) {
+
+    div#profile-from-settings,
+    #principal{
+        display: block;
+        width: 100%;
+
+    }
+
+    nav{
+        display: block;
+        width: 100%;
+        height: 30px;
+    }
+
+    #navigation{
+        width:100%;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        text-align: center;
+        float: left;
+    }
+
+    nav #setari-icon{
+    margin-top: 0px;
+    vertical-align: top;
+    padding-top: 15px;
+    float: right;
+    padding-right: 30px;
+   
+    }
+
+
+    #navigation a {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    
+    #navigation:first-child{
+        position: relative;
+        left:10%;
+    }
+    form input{
+        width: 100%;
+    }
+    .account-settings .panou .poza{
+        width: 100%;
+    }
+    form .butoane{
+        width: 100%;
+    }
+
+} */
+/* car register */
+
+#car-register,
+#port-register
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+form#car-reg,
+form#port-reg
+{
+    flex: 100%;
+}
+
+/*MODIFICARI MIHAI*/
+
+.number-type{
+    width: 30%;
+}
+
+.ocpi{
+    width: 60%;
+}
+
+.no-flex{
+    flex: 100% !important;
+}
+
+.connector{
+    width: 100%;
+}
+
+.add-conn-button{
+    background-color: #2856b8;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.car-select-container{
+    width: 10%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.clicked-car{
+    border: 3px solid #2856b8;
+}
+
+
+/* FINAL: one page */
+
+#car-page,
+#port-page,
+#card-page{
+    display: none;
+}
+
+@media screen and (max-width: 1200px){
+    #profile-from-settings{
+        width: 100%;
+        margin: auto;
+        border-radius: 0;
+        display: flex;
+        flex:1;
+        height: 100vh;
+    }
+    .account-settings .panou .poza{
+        width:max-content;
+    }
+
+   
+}
+

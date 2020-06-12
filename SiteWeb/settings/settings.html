@@ -1,0 +1,271 @@
+<link rel="stylesheet" href="../settings/settings.css">
+
+<div id="settingsPage" >
+
+    <div id="principal" >
+        <div id="page-links">
+            <div class="page-name" id="account-button">
+                <a id="link-account-page">Account</a>
+            </div>
+            <div class="page-name" id="car-button">
+                <a id="link-car-page">Register electric car</a>
+            </div>
+            <div class="page-name" id="port-button">
+                <a id="link-port-page">Register charging port</a>
+            </div>
+        </div>
+        <div id="account-page" >
+            <div class="account-settings">
+                <div class="formular-account">
+                    <form action="#">
+                        <label for="fname">First name</label><br>
+                        <input type="fname" name="fname" id="fname" required><br>
+
+                        <label for="lname">Last name</label><br>
+                        <input type="lname" name="lname" id="lname"  ><br>
+
+                        <label for="phone">Phone number</label><br>
+                        <input type="tel" name="phone" id="phone" ><br>
+
+                        <label for="iban">PayPal email</label><br>
+                        <input type="email" name="PayPal-email" id="PayPal-email" ><br>
+
+
+                        <div class="butoane">
+                            <input type="button" value="Save changes" onclick="saveProfile()">
+                            <input type="button" value="Reset" onclick="getProfile()">
+                        </div>
+                    </form>
+                </div>
+                <div class="formular-account">
+                    <h2>Change password</h2>
+                    <form action="#">
+                        <label for="old-psw">Old password </label><br>
+                        <input type="password" name="old-psw" id="old-psw" placeholder="Enter old password..."
+                            required><br>
+                        <label for="new-psw">New password</label><br>
+                        <input type="password" name="new-psw" id="new-psw" placeholder="Enter new password..."
+                            required><br>
+                        <div class="butoane">
+                            <input type="button" onclick="changePsw()" value="Save">
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="account-settings">
+                <div class="panou">
+                    <div class="poza history">
+                        <h2>Manage your cars</h2>
+                        <h2>View history</h2>
+                        <a href="#" id="login">View profile</a>
+                    </div>
+
+                </div>
+                <div class="panou">
+                    <div class="poza statistics">
+                        <h2>View statistics</h2>
+                        <a href="#" id="statistics">View statistics</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="car-page">
+            <div class="account-settings">
+                <form id="car-reg" action="#">
+                    <div id="car-register">
+                        <div class="formular-account" id="add-car-container">
+                            <label for="make-select">Manufacturer</label><br>
+                            <div class="custom-select" id="make-select">
+                                <select required>
+                                    <option value="0">Select Manufacturer</option>
+                                    <option value="1">Tesla</option>
+                                    <option value="2">Kia</option>
+                                    <option value="3">BMW</option>
+                                </select>
+                            </div>
+                                
+                            <div class="carlist">
+                                <div class="car-item car-select-container">
+                                    <figure class="carfigures car-select">
+                                            <img src="https://staging.cars.chargetrip.io/5dcd5a4638f5ec39b30d1763.png">
+                                            <figcaption>Tesla</figcaption>
+                                            <figcaption class="cartext">Model S</figcaption>
+                                    </figure>
+                                </div>
+
+                                <div class="car-item car-select-container clicked-car" data-id-car="1234567">
+                                        <figure class="carfigures car-select">
+                                                <img src="https://staging.cars.chargetrip.io/5dcd5a4638f5ec39b30d1763.png">
+                                                <figcaption>Tesla</figcaption>
+                                                <figcaption class="cartext">Model S</figcaption>
+                                        </figure>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    
+                    </div>
+
+                    <div class="butoane">
+                        <input type="submit" value="Register car">
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="account-settings">
+                <div class="panou">
+                    <div class="poza history">
+                        <h2>View transactions </h2>
+                        <h2>View cars</h2>
+                        <a href="#" id="login1">View profile</a>
+                    </div>
+
+                </div>
+                <div class="panou">
+                    <div class="poza statistics">
+                        <h2>View statistics</h2>
+                        <a href="#" id="statistics1">View statistics</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="port-page">
+            <div class="account-settings">
+                <form id="port-reg" action="#">
+                    <div id="port-register">
+                        <div class="formular-account no-flex">
+                            <label for="address">Address</label><br>
+                            <input type="text" name="address" id="address" required><br>
+
+                            <label for="city">City</label><br>
+                            <input type="text" name="city" id="city" required><br>
+
+                            <label for="price">Price </label><br>
+                            <input type="number" step="0.1" name="price" id="price" required><br>
+
+                            <label for="latitude">Latitude </label><br>
+                            <input type="number" step="0.0000001" name="latitude" id="latitude" required><br>
+
+                            <label for="longitude">Longitude </label><br>
+                            <input type="number" step="0.0000001" name="longitude" id="longitude" required><br>
+
+                            <label for="pass">Account password for user Auth</label><br>
+                            <input type="password" name="pass" id="pass" required><br>
+
+
+                        </div>
+                        
+                        
+                        <div class="formular-account" id="connectors">
+                            <label>Connectors</label><br>
+                            <div class="connector">
+                                <div class="ocpi">
+                                <div class="custom-select">
+                                    <select required class="format-select">
+                                        <option value="0">Format</option>
+                                        <option value="1">CABLE</option>
+                                        <option value="2">SOCKET</option>
+                                    </select>
+                                </div>
+                                <div class="custom-select">
+                                    <select required class="power-select">
+                                        <option value="0">Power Type</option>
+                                        <option value="1">AC_1_PHASE</option>
+                                        <option value="2">AC_3_PHASE</option>
+                                        <option value="3">DC</option>
+                                    </select>
+                                </div>
+                                    <div class="custom-select">
+                                        <select required class="standard-select">
+                                            <option value="0">Standard</option>
+                                            <option value="1">CHADEMO</option>
+                                            <option value="2">DOMESTIC_A</option>
+                                            <option value="3">DOMESTIC_B</option>
+                                            <option value="4">DOMESTIC_C</option>
+                                            <option value="5">DOMESTIC_D</option>
+                                            <option value="6">DOMESTIC_E</option>
+                                            <option value="7">DOMESTIC_F</option>
+                                            <option value="8">DOMESTIC_G</option>
+                                            <option value="9">DOMESTIC_H</option>
+                                            <option value="10">DOMESTIC_I</option>
+                                            <option value="11">DOMESTIC_J</option>
+                                            <option value="12">DOMESTIC_K</option>
+                                            <option value="13">DOMESTIC_L</option>
+                                            <option value="14">IEC_60309_2_single_16</option>
+                                            <option value="15">IEC_60309_2_three_16</option>
+                                            <option value="16">IEC_60309_2_three_32</option>
+                                            <option value="17">IEC_60309_2_three_64</option>
+                                            <option value="18">IEC_62196_T1</option>
+                                            <option value="19">IEC_62196_T1_COMBO</option>
+                                            <option value="20">IEC_62196_T2</option>
+                                            <option value="21">IEC_62196_T2_COMBO</option>
+                                            <option value="22">IEC_62196_T3A</option>
+                                            <option value="23">IEC_62196_T3C</option>
+                                            <option value="24">PANTOGRAPH_BOTTOM_UP</option>
+                                            <option value="25">PANTOGRAPH_TOP_DOWN</option>
+                                            <option value="26">TESLA_R</option>
+                                            <option value="27">TESLA_S</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ocpi">
+                                    <input type="number" name="max_voltage" class="max-voltage number-type" placeholder="Max Voltage" required><br>
+                                    <input type="number" name="max_amperage" class="max-amperage number-type " placeholder="Max Amperage" required><br>
+                                    <input type="number" name="max_electric_power" class="max-electric-power number-type" placeholder="Max Watt" required><br>
+                                </div>
+                            </div>
+
+                            <button type="button" id="add-conn-button" class="add-conn-button">Add More Connectors</button>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="butoane">
+                        <input type="submit" value="Register port">
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="account-settings">
+                <div class="panou">
+                    <div class="poza history">
+                        <h2>View transactions </h2>
+                        <h2>View cars</h2>
+                        <a href="#" id="login2">View profile</a>
+                    </div>
+
+                </div>
+                <div class="panou">
+                    <div class="poza statistics">
+                        <h2>View statistics</h2>
+                        <a href="#" id="statistics2">View statistics</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../settings/settings.js"></script>

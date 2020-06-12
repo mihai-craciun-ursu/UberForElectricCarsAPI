@@ -1,0 +1,154 @@
+
+.login-page{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#4d94ff, #14283C);
+    position: relative;
+}
+
+.modal{
+    background-color: white;
+    width: 70%;
+    height: 80%;
+    position: absolute;
+    top: 0;
+    right: 0; 
+    bottom: 0;
+    left: 0;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+input { 
+    outline: none;
+}
+
+.image-container {
+    flex: 1 1;
+    display: flex;
+
+}
+.modal-photo{
+    width: 100%;
+    height:auto;
+    bottom: 0;
+    background-size: initial;
+    background-repeat: no-repeat; 
+    align-self: center;
+}
+.modal-login{
+    display :block;
+    float : right;
+    flex: 1 1;
+    text-align: center;
+    
+}
+.modal-login h1{
+    padding: 20% 0 5%;
+    font-family: "Candara", Gadget, sans-serif;
+}
+.modal-register h1{
+    padding: 5% 0 0;
+    font-family: "Candara", Gadget, sans-serif;
+}
+.modal-login input[type="email"], .modal-login input[type="password"]{
+    width: 60%;
+    padding: 2.5% 2%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    box-shadow: 5px 5px 5px gray;
+    margin-bottom: 5%;
+}
+.modal-login #forgot_password{
+    color: lightskyblue;
+    margin-bottom: 2%;
+}
+.modal-login input[type="submit"], .modal-register input[type="submit"]{
+        width: 60%;
+        margin-top: 5%;
+        font-size: 1.2em;
+        padding: 1% 2%; 
+        border-radius: .4rem;
+        font-family: "Candara", Gadget, sans-serif;
+        background-color: #6C63FF;
+        color:white;
+        cursor: pointer;
+        border: 1px solid #6C63FF;
+        box-shadow: 5px 5px 5px gray;
+}
+.modal-register{
+    display: none;
+    float : right;
+    width: 49%;
+    height: 100%;
+    text-align: center;
+}
+.modal-register input[type="email"], .modal-register input[type="password"],
+ .modal-register input[type="text"], .modal-register input[type="tel"]{
+    width: 60%;
+    padding: 2.5% 2%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    box-shadow: 5px 5px 5px gray;
+    margin-bottom: 3%;
+}
+
+@media only screen and (max-width: 900px) {
+    .modal {
+        flex-direction: column;
+    }
+
+    .image-container {
+        flex: 1 0;
+        width: 50%;
+        align-self:center;
+        
+    }
+
+    .modal-photo {
+        align-self: flex-start;
+    }
+
+    .modal-login {
+        width: 60%;
+        align-self: center;
+    }
+    .modal-login h1 {
+        margin: 0;
+        padding-top: 0px;
+    }
+}
+
+/* @media only screen and (max-width: 800px) {
+
+    .modal {
+        flex-direction: column;
+    }
+
+    .image-container {
+        flex: 1 0;
+        width: 80%;
+        align-self:center;
+        
+    }
+
+    .modal-photo {
+        align-self: flex-start;
+    }
+
+    .modal-login {
+        width: 50%;
+        align-self: center;
+    }
+    .modal-login h1 {
+        margin: 0;
+        padding-top: 0px;
+    }
+} */

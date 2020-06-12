@@ -177,14 +177,23 @@ const addStation = async (req, res) => {
 
 
         const password = req.body.password;
-        const validPass = await bcrypt.compare(password, userData.password);
 
-        if(!validPass) {
+        if(password){
+            const validPass = await bcrypt.compare(password, userData.password);
+
+            if(!validPass) {
+                return res.status(HttpStatusCodes.FORBIDDEN).json({
+                success: false,
+                message: "Password incorrect"
+                });
+            }
+        }else{
             return res.status(HttpStatusCodes.FORBIDDEN).json({
-            success: false,
-            message: "Password incorrect"
-            });
+                success: false,
+                message: "Password incorrect"
+                });
         }
+       
 
 
         if(!userData.paypalEmail){
@@ -244,7 +253,7 @@ const addStation = async (req, res) => {
         let arrayOfEvses = [];
         arrayOfEvses.push(evse);
 
-        let locationObj = new TempLocation({ //to be changed with Location
+        let locationObj = new Location({ //to be changed with Location
             evses: arrayOfEvses,
             charging_when_closed: true,
             country_code: "RO",
@@ -257,13 +266,12 @@ const addStation = async (req, res) => {
             time_zone: "europe/bucharest",
             last_updated: new Date().toISOString(),
             user: userData,
-            status: "pending", //to be deleted when added to permanent
             price_per_kw: req.body.price //Float
         });
 
         
 
-        let location = await req.db.TempLocation.create(locationObj);
+        let location = await req.db.Location.create(locationObj);
         
 
         userData.listOfChargingStations.push(location._id);

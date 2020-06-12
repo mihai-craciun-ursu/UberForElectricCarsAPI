@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="../invoice/invoice.css">
+<div class="content_wrapper">
+    <div class="invoice-column">
+        <div id="info">
+            <p class="nume">Hello,</p>
+            <p class="nume" id="firstName"></p>
+            <p class="explications">Here are the transactions that you have made recently. You can check their
+                status,
+                look them up by a receiver name in the search box located
+                on the left side of the page. You are also
+                able to generate a bill. To do that you have to select a transaction from the table and click on the
+                blue
+                button below.
+            </p>
+            <div class="search">
+                <form>
+                    <input type="search" id="search-input" placeholder="search by sender name..."
+                        onkeyup="searchByReceiver()">
+                    <button type="button"><img src="https://img.icons8.com/color/48/000000/search.png" /></button>
+                </form>
+            </div>
+            <div class="transaction">
+                <table id="invoice-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Receiver</th>
+                        <th>Sender</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                    <!-- <tr class="row" tabindex="0">
+                            <td>1234</td>
+                            <td>Marcus Smith</td>
+                            <td>Marcus Smith</td>
+                            <td>200</td>
+                            <td style="color: cornflowerblue;">In progress</td>
+                            <td>12-04-2020</td>
+                        </tr>
+                        <tr class="row" tabindex="0">
+                            <td>1234</td>
+                            <td>Marcus Smith</td>
+                            <td>200</td>
+                            <td>Sent</td>
+                            <td>12-04-2020</td>
+                        </tr>
+                        <tr class="row" tabindex="0">
+                            <td>1234</td>
+                            <td>Marcus Smith</td>
+                            <td>200</td>
+                            <td>Sent</td>
+                            <td>12-04-2020</td>
+                        </tr>
+                        <tr class="row" tabindex="0">
+                            <td>1234</td>
+                            <td>Marcus Smith</td>
+                            <td>200</td>
+                            <td>Sent</td>
+                            <td>12-04-2020</td>
+                        </tr>
+                        <tr class="row" tabindex="0">
+                            <td>1234</td>
+                            <td>Marcus Smith</td>
+                            <td>200</td>
+                            <td>Sent</td>
+                            <td>12-04-2020</td>
+                        </tr> -->
+
+                    <!-- <tr class="hidden">
+                            <td>24812</td>
+                            <td>Leo Stam</td>
+                            <td>150</td>
+                            <td>Sent</td>
+
+                            <td>03-03-2020</td>
+                        </tr>
+                        <tr class="hidden">
+                            <td>24812</td>
+                            <td>Leo Stam</td>
+                            <td>150</td>
+                            <td>Sent</td>
+                            <td>13-03-2020</td>
+                        </tr>
+                        <tr class="hidden">
+                            <td>24812</td>
+                            <td>Leo Stam</td>
+                            <td>150</td>
+                            <td>Sent</td>
+                            <td>23-02-2020</td>
+                        </tr>
+                        <tr class="hidden">
+                            <td>24812</td>
+                            <td>Leo Stam</td>
+                            <td>150</td>
+                            <td>Sent</td>
+                            <td>2-03-2020</td>
+                        </tr> -->
+
+                </table>
+                <div class="bill" style="float: right;">
+                    <button id="bill_submit">Generate Bill</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../invoice/invoice.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+    <script type="text/javascript" src="libs/png_support/zlib.js"></script>
+    <script type="text/javascript" src="libs/png_support/png.js"></script>
+    <script type="text/javascript" src="jspdf.plugin.addimage.js"></script>
+    <script type="text/javascript" src="jspdf.plugin.png_support.js"></script>
+    <script type="text/javascript" src="jspdf.js"></script>
+    <script type="text/javascript" src="/js/myimage.js"></script>

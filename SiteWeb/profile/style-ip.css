@@ -1,0 +1,527 @@
+.profile-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    margin: 0;
+}
+
+#info {
+    background-color: #F5F8F8;
+    width: 78vw;
+    min-width: 70vw;
+    padding: 0px;
+    border-radius: 20px 0px 0px 20px;
+    overflow-y: auto;
+    flex: auto;
+}
+
+div#info .nume {
+    display: inline;
+    position: relative;
+    font-size: 60px;
+    top: 35px;
+    margin-left: 35px;
+    font-family: 'Montserrat';
+    text-emphasis: weight;
+    color: #14283C;
+}
+
+div#info p:nth-of-type(2) {
+    font-weight: bold;
+    margin-left: 10.34px;
+}
+
+.wrappertext {
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 22px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #14283C;
+}
+
+.wrapper {
+    display: grid;
+    margin: 50px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 25px;
+    grid-column-gap: 100px;
+    grid-template-rows: 35vh 35vh;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.history {
+    background-color: #F5F8F8;
+    border-radius: 30px;
+    -webkit-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+}
+
+#info .wrapper .history p {
+    font-size: 22px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #14283C;
+}
+
+body #info .wrapper .history .payment {
+    height: 10vh;
+    width: auto;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    -webkit-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 20px;
+    background-color: #F5F8F8;
+    display: grid;
+    grid-template-rows: 30% 30% 30%;
+    grid-template-columns: 30% 65%;
+    column-gap: 20px;
+    row-gap: 3px;
+}
+
+body #info .wrapper .history #payment1 {
+    margin-top: 0px;
+}
+
+body #info .wrapper .history .payment img {
+    grid-column: 1;
+    grid-row: 1/4;
+    height: 50%;
+    width: 100%;
+    margin: auto;
+}
+
+body #info .wrapper .history .payment p:nth-of-type(1) {
+    grid-column: 2;
+    grid-row: 1;
+    height: 100%;
+    font-size: 10px;
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+    margin-left: 2vh;
+}
+
+body #info .wrapper .history .payment p:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 2;
+    height: 100%;
+    margin-left: 0px;
+    font-size: 10px;
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+    margin-left: 2vh;
+}
+
+body #info .wrapper .history .payment p:nth-of-type(3) {
+    grid-column: 2;
+    grid-row: 3;
+    height: 100%;
+    font-size: 10px;
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+    margin-left: 2vh;
+}
+
+.cars {
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F8F8;
+    border-radius: 30px;
+    -webkit-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+}
+
+.statistics {
+    background-color: #F5F8F8;
+    border-radius: 30px;
+    -webkit-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+}
+
+.account-settings {
+    background-color: #F5F8F8;
+    border-radius: 30px;
+    -webkit-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+}
+
+.sagetuta {
+    position: relative;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    margin-left: 84%;
+    -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+}
+
+.sagetuta p {
+    text-align: center;
+    border: none;
+    margin: auto;
+    width: 50%;
+    padding: 2px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #14283C;
+    font-size: 22px;
+}
+
+.wrapper a {
+    text-decoration: none;
+    position: sticky;
+}
+
+.cars div {
+    display: inline-flex;
+}
+
+
+#car-list {
+    height: 10rem;
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.car-item {
+    -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    height: auto;
+    width: 7rem;
+    /* width: 15rem; */
+    border-radius: 20px;
+    margin: 0px;
+    /* margin-left: 23%;
+    margin-top: 3%; */
+}
+
+/* .cars #cars2 {
+    -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    height: 60%;
+    border-radius: 20px;
+    margin: 0px;
+    width: 25%;
+    margin-left: 3%;
+    margin-top: 3%;
+} */
+
+.carfigures {
+    margin: 0;
+}
+
+.carfigures img {
+    padding-top: 20%;
+    display: block;
+    margin: auto;
+    height: 45%;
+    width: 95%;
+}
+
+.carfigures figcaption {
+    text-align: center;
+    border: none;
+    margin: auto;
+    padding: 2px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #14283C;
+}
+
+.cartext {
+    font-size: 11px;
+    font-weight: none;
+}
+
+.account-settings>div {
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 15%;
+    margin: 0;
+}
+
+.account-settings div :nth-of-type(1) {
+    margin-top: 2%;
+}
+
+.account-settings>div p {
+    margin-bottom: auto;
+    margin-top: auto;
+    width: 50%;
+    padding: 10px;
+    border-bottom: 2px solid lightslategrey;
+}
+
+.statistics img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 60%;
+}
+
+#ratingtext {
+    margin-left: 52%;
+    display: inline;
+    font-size: 14px !important;
+}
+
+#ratingstar {
+    display: inline;
+}
+
+#avatar {
+    display: block;
+    margin: auto;
+}
+
+#myBtn,
+#myBtn2,
+#myBtn3,
+#myBtn4 {
+    margin-top: 2%;
+    border: none;
+    background-color: #F5F8F8;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: 5% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content .payment {
+    height: 10vh;
+    width: auto;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    -webkit-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 11px 11px 18px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 20px;
+    background-color: #F5F8F8;
+    display: grid;
+    grid-template-rows: 30% 30% 30%;
+    grid-template-columns: 30% 65%;
+    column-gap: 20px;
+    row-gap: 3px;
+}
+
+.modal-content .payment img {
+    grid-column: 1;
+    grid-row: 1/4;
+    height: 60%;
+    width: 60%;
+    margin: auto;
+}
+
+.modal-content .payment p {
+    height: 100%;
+    font-size: 10px;
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+    margin-left: 2vh;
+}
+
+.modal3 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    
+}
+
+
+/* Modal Content/Box */
+
+#modal-content3 {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: 5% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-content3 span {
+    right: 20px;
+    top: 10px;
+}
+
+.close3 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close3:hover,
+.close3:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-content3 div {
+    -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.16);
+    height: 60%;
+    border-radius: 20px;
+    margin: 0px;
+    width: 25%;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#modal-content3 .carfigures img {
+    padding-top: 20%;
+    display: block;
+    margin: auto;
+    height: 20vh;
+    width: 14vw;
+}
+
+.carfigures figcaption {
+    text-align: center;
+    border: none;
+    margin: auto;
+    padding: 2px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #14283C;
+}
+
+@media only screen and (min-width:401px) and (max-width: 1200px) {
+    .sagetuta {
+        margin-bottom: 3%;
+    }
+    body {
+        height: 100em;
+    }
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    .wrapper>div {
+        margin-top: 7%;
+    }
+    .statistics,
+    .cars,
+    .history {
+        height: 50vh;
+    }
+    .payment {
+        height: 15vh !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .statistics,
+    .cars,
+    .history {
+        height: 30vh;
+    }
+    .payment {
+        height: 10vh !important;
+    }
+}

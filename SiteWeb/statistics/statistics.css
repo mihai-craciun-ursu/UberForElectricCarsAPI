@@ -1,0 +1,199 @@
+#statistics-page {
+    width: 100%;
+    height: 100%;
+}
+
+.content_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: #1B3550;
+}
+
+.option_profile_wrapper {
+    width: 420px;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background: #14283C;
+}
+
+.option_column {
+    width: 60px;
+    height: 100vh;
+    background: #14283C;
+    text-align: center;
+}
+
+
+.option_icon {
+    position: relative;
+    top: 60px;
+    padding-top: 30px;
+    display: block;
+    margin: auto;
+    width: 26px;
+    height: 26px;
+}
+
+#settings {
+    position: relative;
+    top: 40vh;
+}
+
+
+#car_owner_icon, #location_icon, #email_icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+}
+
+#car_owner_p, #location_p, #email_p {
+    position: relative;
+    top: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.statistics_column {
+    width: 100%;
+    height: 100vh;
+    background: white;
+    border-radius: 25px 0 0 25px;
+    overflow-y: auto;
+}
+
+.title_wrapper {
+    margin-left: 64px;
+    color: #263238;
+    position: relative;
+    bottom: 30px;
+}
+
+#greeting {
+    font-weight: bold;
+    font-size: 54px;
+}
+
+#dummy_p {
+    position: relative;
+    bottom: 50px;
+    font-weight: bold;
+}
+
+.buttons_wrapper {
+    width: 95%;
+    margin: auto;
+    min-height: 80px;
+    text-align: center;
+    position: relative;
+    bottom: 45px;
+}
+
+.buttons_wrapper button {
+    border: none;
+    width: 100px;
+    padding: 8px 20px;
+    margin: 5px 12px;
+    border-radius: 10px;
+    color: #2962ff;
+    font-weight: bold;
+    transition: .8s;
+    outline: none;
+    cursor: pointer;
+}
+
+.buttons_wrapper button:hover {
+    background: #2962ff;
+    color: white;
+}
+
+.chart_wrapper {
+    width: 90vh;
+    margin: auto;
+    height: 350px !important;
+    position: relative;
+    bottom: 80px;
+    border-radius: 10px;
+}
+
+#chart_profit, #chart_spend {
+    height: 50vh !important
+}
+
+@media screen and (max-width: 1200px) {
+    .option_column {
+        display: none;
+    }
+
+
+
+    .profile_column {
+        width: 100%;
+        margin: auto;
+        border-radius: 0;
+    }
+
+    #user_main_data {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: 250px;
+    }
+
+    .header_options {
+        display: block;
+    }
+
+    .header_options img {
+        margin-left: 16px;
+    }
+
+    .chart_wrapper {
+        width: 90%;
+    }
+
+    #car_owner_icon, #location_icon, #email_icon {
+        position: relative;
+        top: 5px;
+        font-size: 15px;
+    }
+    
+    #car_owner_p, #location_p, #email_p {
+        position: relative;
+        top: 45px;
+        font-size: 15px;
+    }
+}
+
+#stats_filter {
+    width: 100%;
+    position: relative;
+    top: -90px;
+}
+
+#profit_stats, #send_stats {
+    margin: 15px;
+    background: #1B3550;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 64px;
+}
+
+#send_stats {
+    margin-left: 10px;
+}
+
+#money_received_area {
+    display: none;
+}
+
+#money_spend_area {
+    /* background: red; */
+}

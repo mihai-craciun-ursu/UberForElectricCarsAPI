@@ -1,0 +1,82 @@
+body {
+    margin: auto 0;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#content-section {
+    display: flex;
+    flex: 1;
+}
+/* .main-container {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    display:flex;
+    flex-direction: row;
+}
+
+#navigation a {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 50px;
+    height: 50px;
+    background-color: #14283C;
+}
+
+nav
+{
+    display: flex;
+    width: 3rem;
+    height: 100%;
+    flex-direction: column;
+    background-color: #14283C;
+}
+
+#navigation { 
+    width: 4%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    min-width: 40px;
+    max-width: 40px;
+}
+
+#navigation:first-child{
+    position: relative;
+    top:10%;
+}
+
+nav #setari-icon{
+    text-align: center;
+    margin-top: 500%;
+}
+
+#content {
+    flex: 1;
+    background-color: #14283C;
+}
+
+.login-section {
+    width: 100%;
+    height: 100%;
+}
+.hidden {
+    display:none;
+} */

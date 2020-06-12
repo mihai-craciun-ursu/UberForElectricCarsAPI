@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="../login_page/login.css">
+
+<div class="login-page">
+  <div class="modal">
+    <div class="image-container">
+      <img src="../login_page/background-modal.png" class="modal-photo">
+    </div>
+    <div class="modal-login" id="login">
+      <h1>Sign in</h1>
+      <input type="email" id="signIn-email" placeholder="Enter your email..." required>
+      <input type="password" id="signIn-password" placeholder="Enter your password..." required> <br>
+      <input type="submit" id="submit-sign-in" value="Sign in">
+      <input type="submit" id="submit-sign-up" value="Sign up">
+    </div>
+    <div class="modal-register" id="register">
+      <h1>Sign up</h1>
+      <input type="text" id="name" placeholder="First Name" required>
+      <input type="text" id="last-name" placeholder="Last Name" required>
+      <input type="email" id="signUp-email" placeholder="Email address" required>
+      <input type="password" id="signUp-password" placeholder="Password" required>
+      <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{10}" required>
+      <input type="submit" id="submit-sign-Up" value="Sign up">
+      <input type="submit" id="submit-sign-in-reg" value="Sign in">
+
+    </div>
+  </div>
+</div>
+<script src="../login_page/login.js"></script>

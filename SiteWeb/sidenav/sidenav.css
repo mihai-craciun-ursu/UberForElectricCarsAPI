@@ -1,0 +1,137 @@
+#navigation a {
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+nav
+{
+  display: table-cell;
+  background-color: #14283C;
+  height: 100%;
+}
+
+#navigation { 
+  width: 4%;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  min-width: 40px;
+  max-width: 40px;
+}
+
+#navigation:first-child{
+  position: relative;
+  top:10%;
+}
+
+nav #setari-icon{
+  text-align: center;
+  margin-top: 500%;
+}
+
+
+#sidenav-container{
+  display:flex;
+  height: 100%;
+
+}
+
+#profile-card-container {
+  width: auto;
+  height: 100%;
+  display:flex;
+
+}
+
+div#profile {
+  background-color: #1B3550;
+  width: 23%;
+  padding: 0px;
+  border-radius: 20px;
+  text-align: center;
+  min-width: 300px;
+  max-width: 300px;
+  overflow-y: auto;
+  flex:1;
+}
+
+div#profile p {
+  font-family: "Candara", Gadget, sans-serif;
+  color: #F5F8F8;
+  font-size: 30px;
+  font-weight: bold;
+  margin-block-start: 0em;
+}
+
+div#profile #info-box {
+  width: 275px;
+  height: 100px;
+  -webkit-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+  box-shadow: 6px 3px 15px 9px rgba(0, 0, 0, 0.25);
+  margin: auto;
+  border-radius: 20px;
+  background-color: #1B3550;
+}
+
+div#profile #info-box figure {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+div#profile #info-box figure:nth-of-type(1) {
+  padding-top: 6px;
+}
+
+div#profile #info-box figure figcaption {
+  display: inline;
+  font-size: 14px;
+  margin-left: 10px;
+  color: #F5F8F8;
+  font-family: 'Montserrat'
+}
+
+div#profile #card-box {
+  width: 275px;
+  height: 150px;
+  background-color: #F5F8F8;
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+div#profile #card-box p {
+  color: #14283C;
+  font-size: 20px;
+  float: left;
+  padding-left: 20px;
+  padding-top: 15px;
+  text-align: center;
+}
+
+#ratingtext {
+  margin-left: 52%;
+  display: inline;
+  font-size: 14px !important;
+}
+
+#ratingstar {
+  display: inline;
+}
+
+#avatar {
+  display: block;
+  margin: auto;
+}
+#logout{
+  top : 10px;
+  position: relative;
+  
+}

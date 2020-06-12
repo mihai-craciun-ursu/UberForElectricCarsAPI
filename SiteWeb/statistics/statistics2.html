@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="../statistics/statistics2.css" tpe="text/css">
+<div id="statistics-page">
+
+    <div class="content_wrapper">
+        <div class="spacer"></div>
+        <div class="statistics_column">
+            <div class="title_wrapper">
+                <p id="greeting">Hello,<span class="nume" id="firstName"></span></p>
+
+                <p id="dummy_p">These are your statistics</p>
+            </div>
+            <div id="stats_filter">
+                <button id="profit_stats">Money received stats</button>
+                <button id="send_stats">Money spend stats</button>
+            </div>
+            <div id="money_received_area">
+                <div class="buttons_wrapper">
+                    <button id="weekly_profit_btn">weekly</button>
+                    <button id="monthly_profit_btn">monthly</button>
+                    <button id="annual_profit_btn">annual</button>
+                </div>
+                <div class="chart_wrapper">
+                    <canvas id="chart_profit"></canvas>
+                </div>
+            </div>
+
+            <div id="money_spend_area">
+                <div class="buttons_wrapper">
+                    <button id="weekly_profit_btn_s">weekly</button>
+                    <button id="monthly_profit_btn_s">monthly</button>
+                    <button id="annual_profit_btn_s">annual</button>
+                </div>
+                <div class="chart_wrapper">
+                    <canvas id="chart_spend"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../statistics/moment.min.js"></script>
+<script src="../statistics/statistics2.js"></script>
